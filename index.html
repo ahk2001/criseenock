@@ -1646,7 +1646,6 @@
        ------------------------------------------------------------------------- */
     let isPlayingAudio = false;
     let userExplicitlyPaused = false;
-    const heroGateSection = document.getElementById('hero-gate-section');
 
     if (bgMusic) {
       bgMusic.volume = 0.70;
@@ -1705,28 +1704,6 @@
       }
     }
 
-    // Inicia a música sincronizada desde o frame 0 do vídeo
-    function startVideoWithMusic() {
-      if (heroVideo && !videoHandled) {
-        if (heroVideo.currentTime > 0.4) {
-          heroVideo.currentTime = 0;
-        }
-        try {
-          heroVideo.play().catch(() => {});
-        } catch(e) {}
-      }
-      playAudio();
-    }
-
-    // Clique ou toque em qualquer lugar do Hero durante o vídeo inicial já ativa o som
-    if (heroGateSection) {
-      heroGateSection.addEventListener('click', (e) => {
-        if (!isPlayingAudio && !userExplicitlyPaused && !videoHandled) {
-          startVideoWithMusic();
-        }
-      });
-    }
-
     if (audioToggleBtn) {
       audioToggleBtn.addEventListener('click', toggleAudio);
       audioToggleBtn.addEventListener('touchend', (e) => {
@@ -1739,10 +1716,10 @@
     window.addEventListener('load', playAudio);
     document.addEventListener('DOMContentLoaded', playAudio);
 
-    // Ativação instantânea no primeiro toque, clique ou tecla
+    // Ativação suave do áudio na primeira interação (sem jamais reiniciar ou interromper o vídeo)
     const unlockAudioOnFirstInteraction = () => {
       if (!userExplicitlyPaused && bgMusic && bgMusic.paused) {
-        startVideoWithMusic();
+        playAudio();
       }
     };
     ['pointerdown', 'mousedown', 'touchstart', 'click', 'keydown', 'wheel', 'scroll'].forEach((evt) => {
