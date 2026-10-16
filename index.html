@@ -568,6 +568,28 @@
       style="z-index: 2;">
     </div>
 
+    <!-- Prompt Romântico de Ativação do Áudio (aparece se o navegador bloquear autoplay de som) -->
+    <div 
+      id="audio-hero-prompt" 
+      class="absolute inset-0 z-30 flex items-center justify-center p-4 transition-all duration-700 opacity-0 pointer-events-none">
+      <button 
+        type="button" 
+        class="px-6 py-3.5 sm:px-8 sm:py-4 rounded-full bg-black/80 hover:bg-black/95 text-champagne-100 border border-gold-400/80 shadow-[0_0_35px_rgba(212,175,55,0.45)] backdrop-blur-md flex items-center gap-3.5 group transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer">
+        <span class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gold-500/20 border border-gold-400/60 flex items-center justify-center text-gold-300 group-hover:bg-gold-500 group-hover:text-charcoal transition-all shadow-inner">
+          <i data-lucide="volume-2" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+        </span>
+        <div class="text-left">
+          <span class="block font-cinzel text-xs sm:text-sm uppercase tracking-[0.2em] text-gold-300 font-bold drop-shadow">
+            Tocar Trilha Sonora
+          </span>
+          <span class="block text-[10px] sm:text-[11px] text-champagne-200/90 font-sans tracking-wide">
+            Toque para assistir ao vídeo com música
+          </span>
+        </div>
+        <i data-lucide="sparkles" class="w-4 h-4 text-gold-400 group-hover:rotate-12 transition-transform"></i>
+      </button>
+    </div>
+
     <!-- Skip / Quick Enter Button (discreto durante o vídeo) -->
     <button 
       id="skip-video-btn" 
@@ -1641,13 +1663,15 @@
     const audioPlayIcon = document.getElementById('audio-play-icon');
 
     /* -------------------------------------------------------------------------
-       1. AMBIENT AUDIO SYSTEM (musica.mp3/m4a/mp4) - ATIVADO AUTOMATICAMENTE
+       1. AMBIENT AUDIO SYSTEM (musica.mp3/m4a/mp4) - ATIVADO JUNTO COM O VÍDEO
        ------------------------------------------------------------------------- */
     let isPlayingAudio = false;
     let userExplicitlyPaused = false;
+    const audioHeroPrompt = document.getElementById('audio-hero-prompt');
+    const heroGateSection = document.getElementById('hero-gate-section');
 
     if (bgMusic) {
-      bgMusic.volume = 0.65;
+      bgMusic.volume = 0.70;
     }
 
     function updateAudioUI(isPlaying) {
@@ -1658,6 +1682,7 @@
         if (audioPlayIcon) audioPlayIcon.classList.add('hidden');
         if (audioLabel) audioLabel.textContent = "Pausar";
         if (audioToggleBtn) audioToggleBtn.setAttribute('title', 'Pausar Trilha Sonora');
+        hideAudioPrompt();
       } else {
         isPlayingAudio = false;
         if (eqContainer) eqContainer.classList.add('eq-paused');
@@ -1665,6 +1690,21 @@
         if (audioPlayIcon) audioPlayIcon.classList.remove('hidden');
         if (audioLabel) audioLabel.textContent = "Tocar";
         if (audioToggleBtn) audioToggleBtn.setAttribute('title', 'Tocar Trilha Sonora');
+      }
+    }
+
+    function showAudioPrompt() {
+      if (audioHeroPrompt && !isPlayingAudio && !userExplicitlyPaused && !videoHandled) {
+        audioHeroPrompt.classList.remove('opacity-0', 'pointer-events-none');
+        audioHeroPrompt.classList.add('opacity-100', 'pointer-events-auto');
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+      }
+    }
+
+    function hideAudioPrompt() {
+      if (audioHeroPrompt) {
+        audioHeroPrompt.classList.add('opacity-0', 'pointer-events-none');
+        audioHeroPrompt.classList.remove('opacity-100', 'pointer-events-auto');
       }
     }
 
@@ -1676,9 +1716,10 @@
         promise.then(() => {
           updateAudioUI(true);
         }).catch(err => {
-          // Caso a política de autoplay do navegador requeira interação prévia
+          // Quando o navegador requer uma primeira ativação (toque ou clique)
           updateAudioUI(false);
-          console.log("Autoplay aguardando primeira interação:", err);
+          showAudioPrompt();
+          console.log("Autoplay de som aguardando gesto do convidado:", err);
         });
       }
     }
@@ -1704,6 +1745,37 @@
       }
     }
 
+    // Inicia a música sincronizada desde o frame 0 do vídeo
+    function startVideoWithMusic() {
+      hideAudioPrompt();
+      if (heroVideo && !videoHandled) {
+        // Se o vídeo já avançou alguns segundos antes do toque, reinicia para sincronia total
+        if (heroVideo.currentTime > 0.4) {
+          heroVideo.currentTime = 0;
+        }
+        try {
+          heroVideo.play().catch(() => {});
+        } catch(e) {}
+      }
+      playAudio();
+    }
+
+    if (audioHeroPrompt) {
+      audioHeroPrompt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        startVideoWithMusic();
+      });
+    }
+
+    // Clique ou toque em qualquer lugar do Hero durante o vídeo inicial já ativa o som
+    if (heroGateSection) {
+      heroGateSection.addEventListener('click', (e) => {
+        if (!isPlayingAudio && !userExplicitlyPaused && !videoHandled) {
+          startVideoWithMusic();
+        }
+      });
+    }
+
     if (audioToggleBtn) {
       audioToggleBtn.addEventListener('click', toggleAudio);
       audioToggleBtn.addEventListener('touchend', (e) => {
@@ -1711,18 +1783,18 @@
       });
     }
 
-    // Tenta iniciar a música imediatamente ao recarregar a página
+    // Tenta iniciar a música imediatamente ao recarregar a página e junto com o vídeo
     playAudio();
     window.addEventListener('load', playAudio);
+    document.addEventListener('DOMContentLoaded', playAudio);
 
-    // Fallback de garantia: se o navegador bloquear o autoplay por falta de gesto prévio,
-    // a música inicia instantaneamente ao primeiro clique, toque ou rolagem
+    // Ativação instantânea no primeiro toque, clique ou tecla
     const unlockAudioOnFirstInteraction = () => {
       if (!userExplicitlyPaused && bgMusic && bgMusic.paused) {
-        playAudio();
+        startVideoWithMusic();
       }
     };
-    ['click', 'touchstart', 'scroll', 'wheel', 'keydown', 'pointerdown'].forEach((evt) => {
+    ['pointerdown', 'mousedown', 'touchstart', 'click', 'keydown', 'wheel', 'scroll'].forEach((evt) => {
       window.addEventListener(evt, unlockAudioOnFirstInteraction, { capture: true, once: true });
       document.addEventListener(evt, unlockAudioOnFirstInteraction, { capture: true, once: true });
     });
@@ -1735,6 +1807,7 @@
     function transitionVideoToHero() {
       if (videoHandled) return;
       videoHandled = true;
+      hideAudioPrompt();
 
       if (heroFinalImg) heroFinalImg.style.opacity = '1';
       if (heroGradientOverlay) heroGradientOverlay.style.opacity = '1';
@@ -1761,6 +1834,18 @@
     }
 
     if (heroVideo) {
+      // Tenta acionar a trilha sonora em perfeita sincronia com o play do vídeo
+      heroVideo.addEventListener('play', () => {
+        if (!isPlayingAudio && !userExplicitlyPaused) {
+          playAudio();
+        }
+      });
+      heroVideo.addEventListener('playing', () => {
+        if (!isPlayingAudio && !userExplicitlyPaused) {
+          playAudio();
+        }
+      });
+
       // Transição suave quando o vídeo de 4.8s estiver a 0.4s do final
       heroVideo.addEventListener('timeupdate', () => {
         if (!videoHandled && heroVideo.duration > 0) {
@@ -1787,6 +1872,7 @@
         if (heroVideo) {
           try { heroVideo.pause(); } catch(err) {}
         }
+        playAudio();
         transitionVideoToHero();
       });
     }
