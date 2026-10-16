@@ -1,0 +1,22 @@
+# Sistema Operacional
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+._*
+
+# Backups e Temporários
+*.bak
+*.tmp
+*.log
+scratch/
+
+# IDEs e Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node / Dependências
+node_modules/

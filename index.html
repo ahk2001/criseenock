@@ -1,0 +1,3550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Cris & Enock — Nosso Casamento</title>
+  <meta name="description" content="Celebre o amor de Cris & Enock no dia 09 de Janeiro de 2027 em Jaraguá do Sul, SC. Convite interativo e confirmação de presença.">
+
+  <!-- Prevenção de restauração de rolagem: Garante que qualquer recarregamento (F5) inicie no topo (0,0) -->
+  <script>
+    if (typeof window !== 'undefined' && window.history && 'scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@200;300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            champagne: {
+              50: '#FDFBF7',
+              100: '#F7F2E9',
+              200: '#EFE5D5',
+              300: '#E2D1B8',
+              400: '#D2B994',
+              500: '#BE9F73',
+              600: '#A38155',
+              700: '#7F623D',
+              800: '#5C4427',
+              900: '#3A2914'
+            },
+            gold: {
+              100: '#FFF9E5',
+              200: '#FCF1BD',
+              300: '#F7E287',
+              400: '#ECCB52',
+              500: '#D4AF37',
+              600: '#B8860B',
+              700: '#916909',
+              800: '#6E4E05',
+              900: '#4D3602'
+            },
+            sand: '#F4ECE1',
+            pearl: '#FAF7F2',
+            charcoal: '#221E1C',
+            warmgray: '#6B625B'
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            cinzel: ['Cinzel', 'serif'],
+            script: ['Pinyon Script', 'Alex Brush', 'cursive'],
+            sans: ['Montserrat', 'system-ui', 'sans-serif']
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'spin-slow': 'spin 20s linear infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- Lenis Smooth Scrolling (Elimina travamentos e gargalos de rolagem) -->
+  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+  <!-- Three.js (Motor Gráfico WebGL para Galeria 3D Imersiva) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    /* Previne conflito com rolagem suave nativa */
+    html {
+      scroll-behavior: auto !important;
+    }
+
+    /* Lenis Smooth Scroll Rules */
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F7F2E9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D2B994;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #BE9F73;
+    }
+
+    /* Golden Gradient Text */
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #B38728 0%, #FBF5B7 40%, #DAA520 70%, #AA771C 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Luxury Glassmorphism */
+    .glass-card {
+      background: rgba(253, 251, 247, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(210, 185, 148, 0.4);
+      box-shadow: 0 20px 40px -15px rgba(110, 78, 5, 0.08);
+      transform: translateZ(0);
+    }
+
+    .glass-dark {
+      background: rgba(34, 30, 28, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      transform: translateZ(0);
+    }
+
+    /* Polaroid Organic Styles */
+    .polaroid-card {
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+      box-shadow: 0 12px 28px -8px rgba(58, 41, 20, 0.15), 0 4px 10px -2px rgba(58, 41, 20, 0.06);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform: translateZ(0);
+    }
+    .polaroid-card:hover {
+      transform: translateY(-8px) scale(1.05) rotate(0deg) !important;
+      z-index: 40 !important;
+      box-shadow: 0 24px 45px -10px rgba(92, 68, 39, 0.25), 0 8px 16px -4px rgba(92, 68, 39, 0.12);
+    }
+
+    /* Hide scrollbars */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Infinite Continuous Photo Carousel */
+    @keyframes infiniteCarouselScroll {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      100% {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+
+    .infinite-carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .infinite-carousel-container::before,
+    .infinite-carousel-container::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 60px;
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    .infinite-carousel-container::before {
+      left: 0;
+      background: linear-gradient(to right, rgba(244, 236, 225, 0.98), transparent);
+    }
+
+    .infinite-carousel-container::after {
+      right: 0;
+      background: linear-gradient(to left, rgba(244, 236, 225, 0.98), transparent);
+    }
+
+    .infinite-carousel-track {
+      display: flex;
+      align-items: center;
+      width: max-content;
+      gap: 2rem;
+      animation: infiniteCarouselScroll 45s linear infinite;
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .infinite-carousel-container:hover .infinite-carousel-track,
+    .infinite-carousel-container.is-paused .infinite-carousel-track {
+      animation-play-state: paused;
+    }
+
+    /* Storytelling Words - 100% otimizado para GSAP Scrub sem conflito de transições CSS */
+    .story-word {
+      display: inline-block;
+      opacity: 0.18;
+      color: #221E1C;
+    }
+
+    .story-word[data-highlight="gold"] {
+      color: #BE9F73;
+    }
+
+    /* Sound Visualizer Bars — 100% GPU Composite sem Reflow / Zero Gargalo */
+    #audio-toggle-btn {
+      transform: translateZ(0);
+      contain: paint;
+    }
+    .eq-bar {
+      width: 3px;
+      height: 16px;
+      background: #D4AF37;
+      border-radius: 2px;
+      transform-origin: bottom center;
+      transform: scaleY(0.25);
+      animation: soundwave 1.2s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+    .eq-bar:nth-child(1) { animation-delay: 0.1s; }
+    .eq-bar:nth-child(2) { animation-delay: 0.3s; }
+    .eq-bar:nth-child(3) { animation-delay: 0.15s; }
+    .eq-bar:nth-child(4) { animation-delay: 0.45s; }
+    @keyframes soundwave {
+      0% { transform: scaleY(0.25); }
+      100% { transform: scaleY(1); }
+    }
+    .eq-paused .eq-bar {
+      animation: none !important;
+      transform: scaleY(0.25) !important;
+    }
+
+    /* Silk background match */
+    .bg-silk-silk {
+      background-color: #E8DFD1;
+    }
+
+    /* Degradê Suave Progressivo Escuro (Filtro preto na frente do BG para contraste dos textos) */
+    .hero-smooth-scrim {
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.92) 0%,
+        rgba(0, 0, 0, 0.78) 15%,
+        rgba(0, 0, 0, 0.55) 30%,
+        rgba(0, 0, 0, 0.32) 48%,
+        rgba(0, 0, 0, 0.15) 65%,
+        rgba(0, 0, 0, 0.04) 80%,
+        transparent 95%
+      );
+    }
+
+    /* RSVP Background Video Responsivo */
+    .rsvp-video-container {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      contain: paint;
+    }
+
+    /* Vídeo Desktop (Horizontal / Paisagem) */
+    .rsvp-video-desktop {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    /* Vídeo Mobile (Vertical / Em pé) */
+    .rsvp-video-mobile {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    @media (min-width: 768px) {
+      .rsvp-video-desktop {
+        display: block;
+      }
+      .rsvp-video-mobile {
+        display: none;
+      }
+    }
+
+    /* Ultra Glassmorphism Otimizado para Vídeo de Fundo — Baixo Custo de GPU */
+    .glass-rsvp {
+      background: rgba(253, 251, 247, 0.82);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.28), inset 0 1px 2px rgba(255, 255, 255, 0.7);
+      transform: translate3d(0, 0, 0);
+      will-change: transform;
+      contain: paint;
+    }
+
+    /* Inputs translúcidos sem reprocessar blur na GPU (o fundo já é desfocado pelo card) */
+    .glass-input {
+      background: rgba(255, 255, 255, 0.65) !important;
+    }
+    .glass-input:focus {
+      background: rgba(255, 255, 255, 0.92) !important;
+    }
+
+    /* =========================================================================
+       LUZ AMBIENTE SUAVE — CAPÍTULO I (CRIS & ENOCK)
+       Aura difusa e sutil nos cantos, 100% limpa e acelerada por GPU
+       ========================================================================= */
+    .ambient-glow-aura {
+      will-change: transform, opacity;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .ambient-glow-top {
+      animation: ambientGlowTopBreath 14s ease-in-out infinite alternate;
+    }
+
+    .ambient-glow-bottom {
+      animation: ambientGlowBottomBreath 16s ease-in-out infinite alternate;
+    }
+
+    @keyframes ambientGlowTopBreath {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.65;
+      }
+      50% {
+        transform: translate3d(50px, 30px, 0) scale(1.18);
+        opacity: 0.95;
+      }
+      100% {
+        transform: translate3d(25px, -15px, 0) scale(1.05);
+        opacity: 0.75;
+      }
+    }
+
+    @keyframes ambientGlowBottomBreath {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.65;
+      }
+      50% {
+        transform: translate3d(-50px, -30px, 0) scale(1.2);
+        opacity: 0.95;
+      }
+      100% {
+        transform: translate3d(-20px, 20px, 0) scale(1.08);
+        opacity: 0.7;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ambient-glow-aura {
+        animation: none !important;
+      }
+    }
+
+    /* -------------------------------------------------------------------------
+       FUNDO BOTÂNICO EDITORIAL (5ª DOBRA: FLORES IDÊNTICAS COM CONSTRUÇÃO LENTA)
+       Ilustração botânica original da referência com máscara de traçado orgânico
+       ------------------------------------------------------------------------- */
+    #detalhes-section {
+      background-color: #FAF6EE;
+      background-image: radial-gradient(ellipse 95% 75% at 50% 50%, #FCF9F2 0%, #F7F1E6 65%, #EEE3D2 100%);
+      contain: paint layout;
+    }
+
+    #botanical-art-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      transform: translateZ(0);
+    }
+
+    #botanical-art-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      mix-blend-mode: multiply;
+      opacity: 0.82;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+
+    /* Cards com Glassmorphism refinado de Alta Performance sobre a ilustração botânica */
+    #detalhes-section .glass-card {
+      background: rgba(254, 252, 248, 0.94);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(210, 185, 148, 0.45);
+      box-shadow: 0 20px 45px -15px rgba(90, 75, 45, 0.10), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+      transform: translateZ(0);
+      contain: layout style;
+    }
+
+    #detalhes-section .glass-card:hover {
+      box-shadow: 0 28px 55px -15px rgba(90, 75, 45, 0.16), 0 0 0 1px rgba(212, 175, 55, 0.3) inset;
+    }
+
+    /* -------------------------------------------------------------------------
+       8ª DOBRA: FAQ INTERATIVO & ACCORDION DE LUXO
+       ------------------------------------------------------------------------- */
+    .faq-item {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(210, 185, 148, 0.45);
+      border-radius: 1.25rem;
+      box-shadow: 0 4px 15px -3px rgba(60, 45, 20, 0.04);
+      transform: translateZ(0);
+    }
+    .faq-item:hover {
+      border-color: rgba(190, 159, 115, 0.85);
+      box-shadow: 0 12px 28px -6px rgba(60, 45, 20, 0.08);
+      transform: translateY(-2px);
+    }
+    .faq-item.active {
+      background: #FFFFFF;
+      border-color: #D2B994;
+      box-shadow: 0 14px 32px -8px rgba(110, 78, 5, 0.12);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+      opacity: 0;
+    }
+    .faq-item.active .faq-answer {
+      opacity: 1;
+    }
+    .faq-chevron {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+    }
+    .faq-item.active .faq-chevron {
+      transform: rotate(180deg);
+      color: #A37A20;
+      background-color: #F8F3EA;
+    }
+  </style>
+</head>
+<body class="bg-champagne-50 text-charcoal font-sans antialiased overflow-x-hidden selection:bg-champagne-300 selection:text-charcoal">
+
+  <!-- ========================================================================= -->
+  <!-- TRILHA SONORA DO CASAMENTO (musica.mp4 em segundo plano)                  -->
+  <!-- ========================================================================= -->
+  <!-- Trilha Sonora em Áudio Nativo (Zero decodificação de vídeo na GPU/CPU) -->
+  <audio 
+    id="wedding-bg-music" 
+    loop 
+    autoplay
+    preload="auto" 
+    class="hidden">
+    <source src="assets/audio/musica.mp3" type="audio/mpeg">
+    <source src="assets/audio/musica.m4a" type="audio/mp4">
+    <source src="assets/audio/musica.mp4" type="audio/mp4">
+  </audio>
+
+  <!-- ========================================================================= -->
+  <!-- FLOATING AUDIO CONTROL COM BOTÃO EXPLÍCITO DE PAUSA / PLAY                -->
+  <!-- ========================================================================= -->
+  <aside class="fixed top-4 right-4 sm:top-5 sm:right-5 z-50 flex items-center gap-3">
+    <button 
+      id="audio-toggle-btn" 
+      class="glass-dark px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full flex items-center gap-2 border border-gold-400/50 hover:border-gold-300 shadow-2xl transition-all duration-300 group cursor-pointer backdrop-blur-md active:scale-95" 
+      title="Pausar Trilha Sonora">
+      
+      <!-- Ícone explícito de Pausa / Play -->
+      <span class="flex items-center justify-center text-gold-400 w-3.5 h-3.5 flex-shrink-0">
+        <!-- Ícone Pausa (visível quando tocando) -->
+        <svg id="audio-pause-icon" class="w-3.5 h-3.5 fill-gold-400 text-gold-400" viewBox="0 0 24 24">
+          <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"></rect>
+          <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"></rect>
+        </svg>
+        <!-- Ícone Play (oculto quando tocando) -->
+        <svg id="audio-play-icon" class="w-3.5 h-3.5 fill-gold-400 text-gold-400 hidden" viewBox="0 0 24 24">
+          <polygon points="5 3 19 12 5 21 5 3" fill="currentColor"></polygon>
+        </svg>
+      </span>
+
+      <!-- Barrinhas animadas do equalizador (inicia animando) -->
+      <div id="eq-container" class="flex items-end gap-0.5 h-3.5 w-3.5 justify-center">
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+      </div>
+
+      <!-- Texto descritivo visível também no celular -->
+      <span id="audio-label" class="text-[10px] sm:text-[11px] uppercase tracking-wider font-semibold text-champagne-100 group-hover:text-gold-300 transition-colors">
+        Pausar
+      </span>
+    </button>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- 1ª DOBRA: GATE DE ENTRADA & HERO CINEMATOGRÁFICO (DESIGN LIMPO & EDITORIAL) -->
+  <!-- ========================================================================= -->
+  <section id="hero-gate-section" class="relative w-full h-screen overflow-hidden flex flex-col justify-end items-center pb-12 sm:pb-16 bg-black">
+    
+    <!-- Background Video: Abraço do Casal na Praia -->
+    <video 
+      id="hero-video" 
+      class="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-1000"
+      autoplay 
+      muted 
+      playsinline 
+      preload="auto">
+      <source src="assets/videos/Couple_embracing_on_sandy_beach_20261014135300.mp4" type="video/mp4">
+      Seu navegador não suporta vídeos HTML5.
+    </video>
+
+    <!-- Background Image Final: imgherofinal.png (fade-in ao final do vídeo) -->
+    <div 
+      id="hero-final-img" 
+      class="absolute inset-0 w-full h-full bg-cover bg-center opacity-0 transition-opacity duration-1000 scale-100"
+      style="background-image: url('assets/images/imgherofinal.png'); z-index: 1;">
+    </div>
+
+    <!-- Degradê Suave de Baixo para Cima (transição orgânica sem marcas ou corte no meio) -->
+    <div 
+      id="hero-gradient-overlay" 
+      class="absolute inset-0 hero-smooth-scrim opacity-0 transition-opacity duration-1000 pointer-events-none"
+      style="z-index: 2;">
+    </div>
+
+    <!-- Skip / Quick Enter Button (discreto durante o vídeo) -->
+    <button 
+      id="skip-video-btn" 
+      class="absolute bottom-6 right-6 text-[11px] tracking-widest uppercase text-champagne-200 bg-black/60 hover:bg-black/85 backdrop-blur-md border border-champagne-300/30 hover:border-gold-400 px-4 py-2 rounded-full transition-all duration-300 flex items-center gap-1.5 cursor-pointer shadow-lg"
+      style="z-index: 20;">
+      <span>Pular</span>
+      <i data-lucide="arrow-down" class="w-3 h-3 text-gold-300"></i>
+    </button>
+
+    <!-- Hero Content Overlay: Apenas o Nome dos Noivos e Informações Essenciais -->
+    <div 
+      id="hero-content" 
+      class="absolute inset-x-0 bottom-8 sm:bottom-12 text-center px-6 max-w-3xl mx-auto flex flex-col items-center justify-end transition-all duration-1000 opacity-0 transform translate-y-6 pointer-events-auto"
+      style="z-index: 10;">
+      
+      <!-- Tagline Minimalista -->
+      <p class="font-cinzel text-[11px] sm:text-xs tracking-[0.35em] uppercase text-gold-300/90 font-light mb-1 drop-shadow">
+        Nosso Casamento
+      </p>
+
+      <!-- Names: Cris & Enock -->
+      <h1 class="font-script text-6xl sm:text-8xl md:text-9xl text-white font-normal mb-1 drop-shadow-2xl tracking-wide">
+        Cris <span class="font-serif italic text-gold-400 text-5xl sm:text-7xl">&</span> Enock
+      </h1>
+
+      <!-- Date and Location -->
+      <div class="flex items-center gap-3 my-2">
+        <div class="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-transparent to-gold-400/80"></div>
+        <p class="font-cinzel text-xs sm:text-sm tracking-[0.25em] uppercase text-champagne-100 font-medium drop-shadow">
+          09 de Janeiro de 2027 • Jaraguá do Sul, SC
+        </p>
+        <div class="h-[1px] w-8 sm:w-16 bg-gradient-to-l from-transparent to-gold-400/80"></div>
+      </div>
+
+      <!-- Sutil Indicador de Rolagem -->
+      <div class="mt-6 flex flex-col items-center opacity-85 hover:opacity-100 transition-opacity">
+        <span class="text-[9px] uppercase tracking-[0.3em] text-champagne-300/90 mb-1.5 font-light">Role para ver mais</span>
+        <div class="w-5 h-8 rounded-full border border-gold-400/50 flex items-start justify-center p-1">
+          <div class="w-1 h-2 rounded-full bg-gold-400 animate-bounce"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- BARRA DE DESTAQUE: COUNTDOWN NUMBER (CENTRALIZADO & MINIMALISTA)           -->
+  <!-- ========================================================================= -->
+  <section class="relative z-20 max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <div class="glass-card rounded-3xl p-8 sm:p-14 border border-champagne-300/80 shadow-2xl backdrop-blur-xl flex flex-col items-center justify-center text-center">
+      
+      <!-- Animated Number Countdown Display (100% Centralizado no Card) -->
+      <div class="flex items-center justify-center gap-2 sm:gap-6 text-charcoal select-none">
+        <!-- Dias -->
+        <div class="flex flex-col items-center min-w-[54px] sm:min-w-[90px]">
+          <div class="flex items-center justify-center py-1 sm:py-2">
+            <span id="cd-days" class="text-3xl sm:text-6xl font-semibold tracking-tight inline-block font-sans leading-none">00</span>
+          </div>
+          <span class="text-xs sm:text-sm text-gray-500 font-medium mt-1">Dias</span>
+        </div>
+
+        <div class="text-xl sm:text-3xl font-bold text-charcoal/40 mb-4 sm:mb-5">:</div>
+
+        <!-- Horas -->
+        <div class="flex flex-col items-center min-w-[54px] sm:min-w-[90px]">
+          <div class="flex items-center justify-center py-1 sm:py-2">
+            <span id="cd-hours" class="text-3xl sm:text-6xl font-semibold tracking-tight inline-block font-sans leading-none">00</span>
+          </div>
+          <span class="text-xs sm:text-sm text-gray-500 font-medium mt-1">Horas</span>
+        </div>
+
+        <div class="text-xl sm:text-3xl font-bold text-charcoal/40 mb-4 sm:mb-5">:</div>
+
+        <!-- Minutos -->
+        <div class="flex flex-col items-center min-w-[54px] sm:min-w-[90px]">
+          <div class="flex items-center justify-center py-1 sm:py-2">
+            <span id="cd-minutes" class="text-3xl sm:text-6xl font-semibold tracking-tight inline-block font-sans leading-none">00</span>
+          </div>
+          <span class="text-xs sm:text-sm text-gray-500 font-medium mt-1">Minutos</span>
+        </div>
+
+        <div class="text-xl sm:text-3xl font-bold text-charcoal/40 mb-4 sm:mb-5">:</div>
+
+        <!-- Segundos -->
+        <div class="flex flex-col items-center min-w-[54px] sm:min-w-[90px]">
+          <div class="flex items-center justify-center py-1 sm:py-2">
+            <span id="cd-seconds" class="text-3xl sm:text-6xl font-semibold tracking-tight inline-block font-sans leading-none">00</span>
+          </div>
+          <span class="text-xs sm:text-sm text-gray-500 font-medium mt-1">Segundos</span>
+        </div>
+      </div>
+
+      <!-- Texto abaixo do temporizador -->
+      <div class="mt-6 sm:mt-8 flex items-center justify-center gap-3">
+        <span class="w-8 sm:w-12 h-px bg-gold-400/50"></span>
+        <span class="font-cinzel text-xs sm:text-sm uppercase tracking-[0.25em] text-gold-700 font-medium">para o grande dia</span>
+        <span class="w-8 sm:w-12 h-px bg-gold-400/50"></span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 2ª DOBRA: STORYTELLING PIN (TELA TRAVADA / SCROLL PINNING)                -->
+  <!-- ========================================================================= -->
+  <section id="story-pin-section" class="relative w-full bg-gradient-to-b from-champagne-50 via-pearl to-champagne-100">
+    
+    <!-- Pinned Viewport Container (trava a tela 100vh durante a leitura) -->
+    <div id="story-pin-wrapper" class="relative w-full min-h-screen h-screen flex flex-col justify-center items-center px-4 sm:px-6 py-6 overflow-hidden">
+      
+      <!-- Glow ambient background animado suave (sem partículas, 100% limpo) -->
+      <div class="ambient-glow-aura ambient-glow-top absolute -top-32 -left-32 w-[420px] h-[420px] rounded-full bg-gold-200/30 blur-3xl pointer-events-none"></div>
+      <div class="ambient-glow-aura ambient-glow-bottom absolute -bottom-32 -right-32 w-[440px] h-[440px] rounded-full bg-champagne-300/30 blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-3xl w-full mx-auto relative z-10 flex flex-col items-center">
+        
+        <!-- Section Header -->
+        <div class="text-center mb-5 sm:mb-7">
+          <div class="inline-flex items-center gap-3 text-gold-600 mb-1.5">
+            <span class="h-[1px] w-8 sm:w-12 bg-gold-500"></span>
+            <span class="font-cinzel text-[10px] sm:text-xs uppercase tracking-[0.3em] font-medium">Capítulo I • Nossa História</span>
+            <span class="h-[1px] w-8 sm:w-12 bg-gold-500"></span>
+          </div>
+          <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-charcoal font-light italic leading-tight">
+            Onde o nosso "Para Sempre" começou
+          </h2>
+        </div>
+
+        <!-- Pinned Reading Card -->
+        <div class="glass-card w-full rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-12 border border-champagne-300/80 shadow-2xl relative">
+          <!-- Tag badge Cris & Enock -->
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-5 py-1 bg-gradient-to-r from-gold-600 to-gold-400 rounded-full text-white text-[10px] sm:text-[11px] uppercase tracking-widest font-medium shadow-md whitespace-nowrap">
+            Cris & Enock
+          </div>
+
+          <!-- Story Text with progressive scrubbed reading -->
+          <div id="story-text-container" class="space-y-4 sm:space-y-6 text-base sm:text-xl md:text-2xl font-serif leading-relaxed text-center">
+            <p class="story-paragraph">
+              <span class="story-word">Dizem</span> <span class="story-word">que</span> <span class="story-word">as</span> <span class="story-word">melhores</span> <span class="story-word">coisas</span> <span class="story-word">da</span> <span class="story-word">vida</span> <span class="story-word">acontecem</span> <span class="story-word">sem</span> <span class="story-word">aviso.</span> <span class="story-word">Foi</span> <span class="story-word">assim</span> <span class="story-word">quando</span> <span class="story-word">os</span> <span class="story-word">nossos</span> <span class="story-word">caminhos</span> <span class="story-word">se</span> <span class="story-word">cruzaram.</span>
+            </p>
+            <p class="story-paragraph">
+              <span class="story-word">Um</span> <span class="story-word">olhar,</span> <span class="story-word">uma</span> <span class="story-word">conversa</span> <span class="story-word">que</span> <span class="story-word">parecia</span> <span class="story-word">não</span> <span class="story-word">ter</span> <span class="story-word">fim,</span> <span class="story-word">e</span> <span class="story-word">a</span> <span class="story-word">certeza</span> <span class="story-word">silenciosa</span> <span class="story-word">de</span> <span class="story-word">que</span> <span class="story-word">havíamos</span> <span class="story-word">encontrado</span> <span class="story-word">um</span> <span class="story-word">lar</span> <span class="story-word">um</span> <span class="story-word">no</span> <span class="story-word">outro.</span>
+            </p>
+            <p class="story-paragraph">
+              <span class="story-word">Ao</span> <span class="story-word">longo</span> <span class="story-word">do</span> <span class="story-word">tempo,</span> <span class="story-word">construímos</span> <span class="story-word">sonhos,</span> <span class="story-word">dividimos</span> <span class="story-word">sorrisos</span> <span class="story-word">ao</span> <span class="story-word">pôr</span> <span class="story-word">do</span> <span class="story-word">sol</span> <span class="story-word">na</span> <span class="story-word">praia</span> <span class="story-word">e</span> <span class="story-word">descobrimos</span> <span class="story-word">que</span> <span class="story-word">o</span> <span class="story-word">amor</span> <span class="story-word">é</span> <span class="story-word">a</span> <span class="story-word">nobre</span> <span class="story-word">escolha</span> <span class="story-word">de</span> <span class="story-word">caminhar</span> <span class="story-word">juntos,</span> <span class="story-word">lado</span> <span class="story-word">a</span> <span class="story-word">lado.</span>
+            </p>
+            <p class="story-paragraph">
+              <span class="story-word font-semibold" data-highlight="gold">Agora,</span> <span class="story-word font-semibold" data-highlight="gold">queremos</span> <span class="story-word font-semibold" data-highlight="gold">celebrar</span> <span class="story-word font-semibold" data-highlight="gold">a</span> <span class="story-word font-semibold" data-highlight="gold">nossa</span> <span class="story-word font-semibold" data-highlight="gold">união</span> <span class="story-word font-semibold" data-highlight="gold">com</span> <span class="story-word font-semibold" data-highlight="gold">você,</span> <span class="story-word font-semibold" data-highlight="gold">que</span> <span class="story-word font-semibold" data-highlight="gold">é</span> <span class="story-word font-semibold" data-highlight="gold">parte</span> <span class="story-word font-semibold" data-highlight="gold">essencial</span> <span class="story-word font-semibold" data-highlight="gold">deste</span> <span class="story-word font-semibold" data-highlight="gold">sonho.</span>
+            </p>
+          </div>
+
+          <!-- Bottom subtle reading progress bar & guidance -->
+          <div class="mt-7 flex flex-col items-center justify-center">
+            <div class="w-32 h-1 bg-champagne-200/90 rounded-full overflow-hidden mb-2">
+              <div id="story-progress-bar" class="w-full h-full origin-left scale-x-0 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-600 rounded-full"></div>
+            </div>
+            <span id="story-scroll-hint" class="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-gold-700/80 font-cinzel transition-colors duration-200">
+              Gire a roda do mouse para ler
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 3ª DOBRA: GALERIA DESALINHADA / POLAROIDS ORGÂNICAS & CARROSSEL           -->
+  <!-- ========================================================================= -->
+  <section id="gallery-section" class="py-24 bg-sand/40 relative overflow-hidden border-y border-champagne-200/60">
+    <div class="max-w-7xl mx-auto px-6 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div>
+        <div class="inline-flex items-center gap-2 text-gold-600 mb-2">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span class="font-cinzel text-xs uppercase tracking-[0.25em]">Memórias Inesquecíveis</span>
+        </div>
+        <h2 class="font-serif text-4xl sm:text-5xl text-charcoal font-normal">
+          Fragmentos do Nosso Amor
+        </h2>
+      </div>
+      <p class="font-sans text-xs sm:text-sm text-warmgray max-w-md">
+        Passe o mouse ou toque sobre as fotos para aproximar e vivenciar cada lembrança especial.
+      </p>
+    </div>
+
+    <!-- Continuous Infinite Marquee Carousel (Passa sozinho continuamente sem parar) -->
+    <div class="infinite-carousel-container py-6" id="infinite-carousel-container">
+      <div class="infinite-carousel-track">
+        
+        <!-- ================= PRIMEIRA SEQUÊNCIA (7 POLAROIDS) ================= -->
+        <!-- Polaroid 1 (Foto real do casal) -->
+        <div class="polaroid-card bg-white p-4 pb-6 rounded-sm w-72 sm:w-80 flex-shrink-0 cursor-pointer transform -rotate-3" onclick="openLightbox('assets/images/imgherofinal.png', 'Cris & Enock — Nosso Pôr do Sol na Praia')">
+          <div class="overflow-hidden aspect-[4/5] bg-champagne-100 rounded-sm mb-3">
+            <img src="assets/images/imgherofinal.png" alt="Cris e Enock na praia" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy">
+          </div>
+          <p class="font-script text-2xl text-charcoal text-center">Nosso olhar de cumplicidade</p>
+          <span class="block text-center font-cinzel text-[10px] tracking-widest text-gold-600 uppercase mt-1">Praia ao Entardecer</span>
+        </div>
+
+        <!-- Polaroid 2 (Foto aérea do casal) -->
+        <div class="polaroid-card bg-white p-4 pb-6 rounded-sm w-72 sm:w-80 flex-shrink-0 cursor-pointer transform rotate-4" onclick="openLightbox('assets/images/imgheroinicio.png', 'Cris & Enock — Caminhando juntos')">
+          <div class="overflow-hidden aspect-[4/5] bg-champagne-100 rounded-sm mb-3">
+            <img src="assets/images/imgheroinicio.png" alt="Cris e Enock caminhando na praia" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy">
+          </div>
+          <p class="font-script text-2xl text-charcoal text-center">Dois caminhos que viraram um</p>
+          <span class="block text-center font-cinzel text-[10px] tracking-widest text-gold-600 uppercase mt-1">Passos Firmes</span>
+        </div>
+
+        <!-- Polaroid 3 (Romance) -->
+        <div class="polaroid-card bg-white p-4 pb-6 rounded-sm w-72 sm:w-80 flex-shrink-0 cursor-pointer transform -rotate-2" onclick="openLightbox('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85', 'O Abraço que Aquece a Alma')">
+          <div class="overflow-hidden aspect-[4/5] bg-champagne-100 rounded-sm mb-3">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Casal abraçado" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy">
+          </div>
+          <p class="font-script text-2xl text-charcoal text-center">O abraço que acalma o mundo</p>
+          <span class="block text-center font-cinzel text-[10px] tracking-widest text-gold-600 uppercase mt-1">Amor Verdadeiro</span>
+        </div>
+
+        <!-- Polaroid 4 (Alianças) -->
+        <div class="polaroid-card bg-white p-4 pb-6 rounded-sm w-72 sm:w-80 flex-shrink-0 cursor-pointer transform rotate-5" onclick="openLightbox('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=85', 'As Alianças e a Promessa Eterna')">
+          <div class="overflow-hidden aspect-[4/5] bg-champagne-100 rounded-sm mb-3">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Alianças de casamento" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy">
+          </div>
+          <p class="font-script text-2xl text-charcoal text-center">O símbolo da nossa aliança</p>
+          <span class="block text-center font-cinzel text-[10px] tracking-widest text-gold-600 uppercase mt-1">Eternidade</span>
+        </div>
+
+        <!-- Polaroid 5 (Pôr do Sol) -->
+        <div class="polaroid-card bg-white p-4 pb-6 rounded-sm w-72 sm:w-80 flex-shrink-0 cursor-pointer transform -rotate-4" onclick="openLightbox('https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1200&q=85', 'Pôr do Sol Dourado')">
+          <div class="overflow-hidden aspect-[4/5] bg-champagne-100 rounded-sm mb-3">
+            <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&q=80" alt="Beijo no pôr do sol" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy">
+          </div>
+          <p class="font-script text-2xl text-charcoal text-center">Sob as cores do entardecer</p>
+          <span class="block text-center font-cinzel text-[10px] tracking-widest text-gold-600 uppercase mt-1">Céu de Bênçãos</span>
+        </div>
+
+        <!-- Polaroid 6 (Elegância) -->
+        <div class="polaroid-card bg-white p-4 pb-6 rounded-sm w-72 sm:w-80 flex-shrink-0 cursor-pointer transform rotate-3" onclick="openLightbox('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=85', 'O Grande Dia')">
+          <div class="overflow-hidden aspect-[4/5] bg-champagne-100 rounded-sm mb-3">
+            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="Detalhes do vestido" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy">
+          </div>
+          <p class="font-script text-2xl text-charcoal text-center">A pureza do nosso sentimento</p>
+          <span class="block text-center font-cinzel text-[10px] tracking-widest text-gold-600 uppercase mt-1">Elegância & Fé</span>
+        </div>
+
+        <!-- Polaroid 7 (Celebração) -->
+        <div class="polaroid-card bg-white p-4 pb-6 rounded-sm w-72 sm:w-80 flex-shrink-0 cursor-pointer transform -rotate-3" onclick="openLightbox('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1200&q=85', 'Celebrando com Amor')">
+          <div class="overflow-hidden aspect-[4/5] bg-champagne-100 rounded-sm mb-3">
+            <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=600&q=80" alt="Cerimônia ao ar livre" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy">
+          </div>
+          <p class="font-script text-2xl text-charcoal text-center">Para sempre em nossos corações</p>
+          <span class="block text-center font-cinzel text-[10px] tracking-widest text-gold-600 uppercase mt-1">Celebração</span>
+        </div>
+
+        <!-- ================= SEGUNDA SEQUÊNCIA (LOOP INFINITO PERFEITO) ================= -->
+        <!-- Polaroid 1 (Duplicada) -->
+        <div class="polaroid-card bg-white p-4 pb-6 rounded-sm w-72 sm:w-80 flex-shrink-0 cursor-pointer transform -rotate-3" onclick="openLightbox('assets/images/imgherofinal.png', 'Cris & Enock — Nosso Pôr do Sol na Praia')">
+          <div class="overflow-hidden aspect-[4/5] bg-champagne-100 rounded-sm mb-3">
+            <img src="assets/images/imgherofinal.png" alt="Cris e Enock na praia" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy">
+          </div>
+          <p class="font-script text-2xl text-charcoal text-center">Nosso olhar de cumplicidade</p>
+          <span class="block text-center font-cinzel text-[10px] tracking-widest text-gold-600 uppercase mt-1">Praia ao Entardecer</span>
+        </div>
+
+        <!-- Polaroid 2 (Duplicada) -->
+        <div class="polaroid-card bg-white p-4 pb-6 rounded-sm w-72 sm:w-80 flex-shrink-0 cursor-pointer transform rotate-4" onclick="openLightbox('assets/images/imgheroinicio.png', 'Cris & Enock — Caminhando juntos')">
+          <div class="overflow-hidden aspect-[4/5] bg-champagne-100 rounded-sm mb-3">
+            <img src="assets/images/imgheroinicio.png" alt="Cris e Enock caminhando na praia" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy">
+          </div>
+          <p class="font-script text-2xl text-charcoal text-center">Dois caminhos que viraram um</p>
+          <span class="block text-center font-cinzel text-[10px] tracking-widest text-gold-600 uppercase mt-1">Passos Firmes</span>
+        </div>
+
+        <!-- Polaroid 3 (Duplicada) -->
+        <div class="polaroid-card bg-white p-4 pb-6 rounded-sm w-72 sm:w-80 flex-shrink-0 cursor-pointer transform -rotate-2" onclick="openLightbox('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85', 'O Abraço que Aquece a Alma')">
+          <div class="overflow-hidden aspect-[4/5] bg-champagne-100 rounded-sm mb-3">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Casal abraçado" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy">
+          </div>
+          <p class="font-script text-2xl text-charcoal text-center">O abraço que acalma o mundo</p>
+          <span class="block text-center font-cinzel text-[10px] tracking-widest text-gold-600 uppercase mt-1">Amor Verdadeiro</span>
+        </div>
+
+        <!-- Polaroid 4 (Duplicada) -->
+        <div class="polaroid-card bg-white p-4 pb-6 rounded-sm w-72 sm:w-80 flex-shrink-0 cursor-pointer transform rotate-5" onclick="openLightbox('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=85', 'As Alianças e a Promessa Eterna')">
+          <div class="overflow-hidden aspect-[4/5] bg-champagne-100 rounded-sm mb-3">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Alianças de casamento" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy">
+          </div>
+          <p class="font-script text-2xl text-charcoal text-center">O símbolo da nossa aliança</p>
+          <span class="block text-center font-cinzel text-[10px] tracking-widest text-gold-600 uppercase mt-1">Eternidade</span>
+        </div>
+
+        <!-- Polaroid 5 (Duplicada) -->
+        <div class="polaroid-card bg-white p-4 pb-6 rounded-sm w-72 sm:w-80 flex-shrink-0 cursor-pointer transform -rotate-4" onclick="openLightbox('https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1200&q=85', 'Pôr do Sol Dourado')">
+          <div class="overflow-hidden aspect-[4/5] bg-champagne-100 rounded-sm mb-3">
+            <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&q=80" alt="Beijo no pôr do sol" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy">
+          </div>
+          <p class="font-script text-2xl text-charcoal text-center">Sob as cores do entardecer</p>
+          <span class="block text-center font-cinzel text-[10px] tracking-widest text-gold-600 uppercase mt-1">Céu de Bênçãos</span>
+        </div>
+
+        <!-- Polaroid 6 (Duplicada) -->
+        <div class="polaroid-card bg-white p-4 pb-6 rounded-sm w-72 sm:w-80 flex-shrink-0 cursor-pointer transform rotate-3" onclick="openLightbox('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=85', 'O Grande Dia')">
+          <div class="overflow-hidden aspect-[4/5] bg-champagne-100 rounded-sm mb-3">
+            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="Detalhes do vestido" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy">
+          </div>
+          <p class="font-script text-2xl text-charcoal text-center">A pureza do nosso sentimento</p>
+          <span class="block text-center font-cinzel text-[10px] tracking-widest text-gold-600 uppercase mt-1">Elegância & Fé</span>
+        </div>
+
+        <!-- Polaroid 7 (Duplicada) -->
+        <div class="polaroid-card bg-white p-4 pb-6 rounded-sm w-72 sm:w-80 flex-shrink-0 cursor-pointer transform -rotate-3" onclick="openLightbox('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1200&q=85', 'Celebrando com Amor')">
+          <div class="overflow-hidden aspect-[4/5] bg-champagne-100 rounded-sm mb-3">
+            <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=600&q=80" alt="Cerimônia ao ar livre" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy">
+          </div>
+          <p class="font-script text-2xl text-charcoal text-center">Para sempre em nossos corações</p>
+          <span class="block text-center font-cinzel text-[10px] tracking-widest text-gold-600 uppercase mt-1">Celebração</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Sutil Legenda Editorial -->
+    <div class="flex items-center justify-center gap-2 mt-4 text-warmgray/80 text-[11px] font-cinzel tracking-widest uppercase text-center px-4">
+      <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold-500"></i>
+      <span>Passe o mouse ou toque sobre qualquer foto para pausar e ampliar</span>
+      <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold-500"></i>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 4ª DOBRA: O CONVITE INTERATIVO GUIADO POR SCROLL (SCROLL SCRUBBING)        -->
+  <!-- ========================================================================= -->
+  <section id="convite-scroll-section" class="relative w-full bg-[#BA9B7E] sm:bg-[#E8DFD1]">
+    
+    <!-- Pinned Container for GSAP ScrollTrigger (Full Bleed sem bordas) -->
+    <div id="canvas-pin-wrapper" class="relative w-full h-screen overflow-hidden flex items-center justify-center bg-[#BA9B7E] sm:bg-[#E8DFD1]">
+      
+      <!-- HTML5 Canvas for 200 Sequence Frames (Full Screen Responsivo) -->
+      <canvas id="canvas-scrub" class="w-full h-full block cursor-pointer" title="Toque para ampliar o convite"></canvas>
+
+      <!-- Loading Indicator while frames buffer -->
+      <div id="canvas-loader" class="absolute inset-0 bg-[#BA9B7E] sm:bg-[#E8DFD1] flex flex-col items-center justify-center z-30 transition-opacity duration-700">
+        <div class="w-16 h-16 rounded-full border-2 border-champagne-300 border-t-gold-600 animate-spin mb-4"></div>
+        <p class="font-cinzel text-sm uppercase tracking-widest text-charcoal">Preparando Convite Interativo...</p>
+        <span id="loader-progress" class="text-xs text-gold-700 font-medium mt-1">0%</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 5ª DOBRA: INFORMAÇÕES DA CERIMÔNIA, RECEPÇÃO & ROTAS                      -->
+  <!-- ========================================================================= -->
+  <section id="detalhes-section" class="py-28 relative overflow-hidden text-charcoal">
+
+    <!-- Fundo Botânico de Alta Performance (Zero lag, zero congelamento) -->
+    <div id="botanical-bg" class="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none" aria-hidden="true">
+      <!-- Papel Artesanal Texturizado de Luxo (Gradiente Quente de Linho) -->
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse 95% 75% at 50% 50%, #FCF9F2 0%, #F7F1E6 65%, #EEE3D2 100%);"></div>
+
+      <!-- Iluminação Radial Central Suave para Destacar os Cards -->
+      <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle 650px at 50% 55%, rgba(255, 255, 255, 0.45) 0%, transparent 100%);"></div>
+
+      <!-- Camada de Obra Botânica Exata da Referência com Aceleração de Hardware -->
+      <div id="botanical-art-layer">
+        <img 
+          id="botanical-art-image"
+          src="assets/images/botanical_reference.png" 
+          alt="Ilustração Botânica Floral"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 text-gold-600 mb-2">
+          <i data-lucide="map-pin" class="w-4 h-4"></i>
+          <span class="font-cinzel text-xs uppercase tracking-[0.25em]">Localização & Programação</span>
+        </div>
+        <h2 class="font-serif text-4xl sm:text-5xl text-charcoal font-light italic">
+          Onde o Grande Dia Acontecerá
+        </h2>
+        <p class="font-sans text-xs sm:text-sm text-warmgray mt-3">
+          Tudo preparado com amor para que você desfrute cada instante com máximo conforto.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        
+        <!-- Card 1: Cerimônia & Recepção -->
+        <div class="glass-card rounded-3xl p-8 sm:p-10 border border-champagne-300 flex flex-col justify-between shadow-xl relative overflow-hidden group hover:border-gold-400 transition-all duration-500">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-gold-200/20 rounded-bl-full pointer-events-none"></div>
+
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-champagne-200/60 border border-gold-400/40 flex items-center justify-center text-gold-700 mb-6 shadow-inner">
+              <i data-lucide="church" class="w-7 h-7"></i>
+            </div>
+
+            <span class="font-cinzel text-xs tracking-widest text-gold-600 uppercase font-semibold">Celebração & Festa</span>
+            <h3 class="font-serif text-3xl text-charcoal font-semibold mt-1 mb-4">
+              Cerimônia e Recepção Integradas
+            </h3>
+
+            <div class="space-y-4 my-6 text-sm text-charcoal">
+              <div class="flex items-start gap-3">
+                <i data-lucide="calendar" class="w-5 h-5 text-gold-600 flex-shrink-0 mt-0.5"></i>
+                <div>
+                  <strong class="block font-semibold">Data Solene:</strong>
+                  <span>09 de Janeiro de 2027 (Sábado)</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <i data-lucide="clock" class="w-5 h-5 text-gold-600 flex-shrink-0 mt-0.5"></i>
+                <div>
+                  <strong class="block font-semibold">Horário de Início:</strong>
+                  <span>19:00 horas (Recomendamos chegada às 18:40h)</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <i data-lucide="sparkles" class="w-5 h-5 text-gold-600 flex-shrink-0 mt-0.5"></i>
+                <div>
+                  <strong class="block font-semibold">Traje Recomendado:</strong>
+                  <span>Traje Livre Escolha (Sugerido: Esporte Fino / Elegante)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Card 2: Local & Rotas Rápidas -->
+        <div class="glass-card rounded-3xl p-8 sm:p-10 border border-champagne-300 flex flex-col justify-between shadow-xl relative overflow-hidden group hover:border-gold-400 transition-all duration-500">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-gold-200/20 rounded-bl-full pointer-events-none"></div>
+
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-champagne-200/60 border border-gold-400/40 flex items-center justify-center text-gold-700 mb-6 shadow-inner">
+              <i data-lucide="navigation" class="w-7 h-7"></i>
+            </div>
+
+            <span class="font-cinzel text-xs tracking-widest text-gold-600 uppercase font-semibold">Como Chegar</span>
+            <h3 class="font-serif text-3xl text-charcoal font-semibold mt-1 mb-4">
+              Localização Exata
+            </h3>
+
+            <div class="space-y-3 my-6 text-sm text-charcoal">
+              <div class="flex items-start gap-3">
+                <i data-lucide="map-pin" class="w-5 h-5 text-gold-600 flex-shrink-0 mt-0.5"></i>
+                <div>
+                  <strong class="block font-semibold">Endereço do Evento:</strong>
+                  <span class="text-charcoal leading-relaxed">
+                    R. Roberto Ziemann, 5711 — Três Rios do Norte<br>
+                    Jaraguá do Sul — SC, Brasil
+                  </span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <i data-lucide="shield-check" class="w-5 h-5 text-gold-600 flex-shrink-0 mt-0.5"></i>
+                <div>
+                  <strong class="block font-semibold">Comodidades:</strong>
+                  <span class="text-warmgray">Estacionamento amplo e gratuito no local, ambiente climatizado e acessível.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deep Link Navigation Buttons (Google Maps com Rota Direta & Waze) -->
+          <div class="pt-6 border-t border-champagne-200/80 flex flex-col sm:flex-row gap-3 relative z-20">
+            <a 
+              id="btn-google-maps"
+              href="https://www.google.com/maps/dir/?api=1&destination=R.+Roberto+Ziemann,+5711+-+Tr%C3%AAs+Rios+do+Norte,+Jaragu%C3%A1+do+Sul+-+SC" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              onclick="window.open(this.href, '_blank'); return false;"
+              class="flex-1 py-3.5 px-6 rounded-xl bg-charcoal hover:bg-black text-white font-semibold text-xs tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2.5 shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-95 cursor-pointer border border-gold-400/30 group"
+              title="Abrir rota no Google Maps">
+              <i data-lucide="map-pin" class="w-4 h-4 text-gold-400 group-hover:scale-110 transition-transform"></i>
+              <span>Google Maps (Traçar Rota)</span>
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-champagne-300/80"></i>
+            </a>
+
+            <a 
+              id="btn-waze"
+              href="https://waze.com/ul?q=R.+Roberto+Ziemann,+5711+-+Tr%C3%AAs+Rios+do+Norte,+Jaragu%C3%A1+do+Sul+-+SC&navigate=yes" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              onclick="window.open(this.href, '_blank'); return false;"
+              class="py-3.5 px-5 rounded-xl bg-champagne-200/70 hover:bg-champagne-300/80 text-charcoal font-semibold text-xs tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-95 cursor-pointer border border-gold-400/40 group"
+              title="Abrir no Waze">
+              <i data-lucide="navigation" class="w-4 h-4 text-gold-700 group-hover:rotate-12 transition-transform"></i>
+              <span>Waze</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 6ª DOBRA: CONFIRMAÇÃO DE PRESENÇA (COM VÍDEO DE FUNDO & GLASSMORFISM)      -->
+  <!-- ========================================================================= -->
+  <section id="rsvp-section" class="relative w-full min-h-screen py-24 sm:py-32 overflow-hidden flex items-center justify-center bg-black">
+    
+    <!-- Background Videos Responsivos (Desktop Horizontal 16:9 & Mobile Vertical 9:16) -->
+    <div class="rsvp-video-container pointer-events-none z-0">
+      <!-- Versão Desktop: Vídeo Horizontal Nativo (sem corte ou bordas) -->
+      <video 
+        id="rsvp-bg-video-desktop" 
+        class="rsvp-video-desktop" 
+        loop 
+        muted 
+        playsinline 
+        preload="metadata">
+        <source src="assets/videos/rsvp_video_horizontal.mp4" type="video/mp4">
+      </video>
+
+      <!-- Versão Mobile: Vídeo Vertical Nativo -->
+      <video 
+        id="rsvp-bg-video-mobile" 
+        class="rsvp-video-mobile" 
+        loop 
+        muted 
+        playsinline 
+        preload="metadata">
+        <source src="assets/videos/rsvp_video.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- Filtro escuro suave na frente do vídeo para nitidez sem esconder o vídeo -->
+    <div class="absolute inset-0 bg-black/20 z-[1] pointer-events-none"></div>
+    
+    <div class="max-w-3xl w-full mx-auto px-6 relative z-10">
+      
+      <!-- RSVP Header -->
+      <div class="text-center mb-10 flex flex-col items-center">
+        <div class="inline-flex items-center gap-2 text-gold-800 bg-white/40 px-4 py-1.5 rounded-full border border-white/50 shadow-md backdrop-blur-md mb-3">
+          <i data-lucide="heart-handshake" class="w-4 h-4 text-gold-600"></i>
+          <span class="font-cinzel text-xs uppercase tracking-[0.25em] font-semibold">Confirmação de Presença</span>
+        </div>
+        <div class="inline-block bg-white/30 backdrop-blur-md px-6 py-3.5 rounded-2xl border border-white/45 shadow-xl">
+          <h2 class="font-serif text-3xl sm:text-5xl text-charcoal font-semibold italic drop-shadow-sm">
+            Celebre Conosco Esse Momento
+          </h2>
+          <p class="font-sans text-xs sm:text-sm text-charcoal font-medium mt-1.5 max-w-lg mx-auto drop-shadow-sm">
+            Por gentileza, confirme sua presença até <strong>10 de Dezembro de 2026</strong> para organizarmos tudo com carinho para o buffet.
+          </p>
+        </div>
+      </div>
+
+      <!-- Clean & Elegant Glassmorphism Form -->
+      <form id="rsvp-form" class="glass-rsvp rounded-3xl p-8 sm:p-12 space-y-6">
+        
+        <!-- Titular: Nome Completo -->
+        <div>
+          <label for="titular-nome" class="block font-cinzel text-xs uppercase tracking-wider text-charcoal font-bold mb-2">
+            Seu Nome Completo (Convidado Titular) *
+          </label>
+          <input 
+            type="text" 
+            id="titular-nome" 
+            name="nome" 
+            required 
+            placeholder="Ex: Carlos Eduardo da Silva"
+            class="w-full px-5 py-3.5 rounded-xl glass-input border border-champagne-300 focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30 outline-none text-charcoal text-sm transition-all shadow-sm placeholder:text-warmgray/70">
+        </div>
+
+        <!-- WhatsApp -->
+        <div>
+          <label for="titular-whatsapp" class="block font-cinzel text-xs uppercase tracking-wider text-charcoal font-bold mb-2">
+            WhatsApp / Telefone com DDD *
+          </label>
+          <input 
+            type="tel" 
+            id="titular-whatsapp" 
+            name="whatsapp" 
+            required 
+            maxlength="15"
+            autocomplete="tel"
+            placeholder="(47) 99999-9999"
+            class="w-full px-5 py-3.5 rounded-xl glass-input border border-champagne-300 focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30 outline-none text-charcoal text-sm transition-all shadow-sm placeholder:text-warmgray/70">
+          <p id="whatsapp-error-msg" class="hidden text-xs text-rose-600 font-medium mt-1.5 flex items-center gap-1.5 transition-all">
+            <i data-lucide="alert-circle" class="w-3.5 h-3.5 flex-shrink-0 text-rose-500"></i>
+            <span id="whatsapp-error-text">Por favor, informe um WhatsApp válido com DDD (ex: (47) 99999-9999).</span>
+          </p>
+        </div>
+
+        <!-- Accompanists Section (Dynamic Repeater) -->
+        <div class="pt-2 border-t border-champagne-300/60">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <span class="font-cinzel text-xs uppercase tracking-wider text-charcoal font-bold block">
+                Acompanhantes & Familiares
+              </span>
+              <span class="text-[11px] text-charcoal/80 font-medium">Adicione quem irá com você (cônjuge, filhos)</span>
+            </div>
+            <button 
+              type="button" 
+              onclick="addAcompanhante()" 
+              class="px-4 py-1.5 rounded-full bg-white/45 hover:bg-gold-500 hover:text-white text-charcoal border border-white/55 font-semibold text-xs tracking-wider uppercase transition-all flex items-center gap-1.5 shadow-sm cursor-pointer">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+              <span>Adicionar</span>
+            </button>
+          </div>
+
+          <div id="acompanhantes-container" class="space-y-3">
+            <!-- Dynamic rows appear here -->
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-4">
+          <button 
+            type="submit" 
+            id="submit-rsvp-btn" 
+            class="w-full py-4 rounded-full bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 hover:from-gold-500 hover:to-gold-400 text-charcoal font-bold text-sm tracking-widest uppercase transition-all duration-300 shadow-xl hover:shadow-gold-500/40 flex items-center justify-center gap-2 hover:scale-[1.02] cursor-pointer">
+            <i data-lucide="send" class="w-4 h-4"></i>
+            <span>Confirmar Minha Presença</span>
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 7ª DOBRA: MURAL DO CASAMENTO (FOTOS AO VIVO & UPLOAD)                      -->
+  <!-- ========================================================================= -->
+  <section id="mural-section" class="py-28 bg-gradient-to-b from-pearl via-sand/30 to-champagne-100 relative overflow-hidden border-t border-champagne-200/60">
+    
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 text-gold-600 mb-2">
+          <i data-lucide="camera" class="w-4 h-4"></i>
+          <span class="font-cinzel text-xs uppercase tracking-[0.25em]">Mural Colaborativo</span>
+        </div>
+        <h2 class="font-serif text-4xl sm:text-5xl text-charcoal font-light italic">
+          Compartilhe Seus Cliques da Festa
+        </h2>
+        <p class="font-sans text-xs sm:text-sm text-warmgray mt-3">
+          Durante a festa ou após o grande dia, envie suas fotos para eternizarmos cada ângulo do nosso casamento!
+        </p>
+      </div>
+
+      <!-- Botões de Ação do Mural: Explorar Galeria 3D e Upload de Fotos -->
+      <div class="flex flex-wrap items-center justify-center gap-4 mb-12">
+        <button onclick="openGallery3D(0)" class="px-8 py-4 rounded-full bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 hover:from-gold-500 hover:to-gold-400 text-charcoal font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-xl flex items-center gap-3 cursor-pointer hover:scale-105 border border-gold-300/80 active:scale-95 group">
+          <i data-lucide="sparkles" class="w-4 h-4 text-charcoal group-hover:rotate-12 transition-transform"></i>
+          <span>Explorar Galeria 3D (Tela Cheia)</span>
+        </button>
+
+        <label for="mural-file-input" class="px-8 py-4 rounded-full bg-charcoal hover:bg-black text-champagne-100 hover:text-white font-semibold text-xs tracking-widest uppercase transition-all duration-300 shadow-xl flex items-center gap-3 cursor-pointer hover:scale-105 border border-gold-400/40 active:scale-95">
+          <i data-lucide="upload-cloud" class="w-4 h-4 text-gold-400"></i>
+          <span>Subir Fotos da Festa</span>
+        </label>
+        <input type="file" id="mural-file-input" accept="image/*" class="hidden" onchange="handleMuralUpload(event)">
+      </div>
+
+      <!-- Live Mural Grid: Clicar em qualquer foto abre a galeria 3D em tela cheia -->
+      <div id="mural-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <div class="relative group rounded-2xl overflow-hidden aspect-square bg-champagne-200 shadow-md cursor-pointer" onclick="openGallery3D(0)">
+          <img src="assets/images/imgherofinal.png" alt="Mural 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white text-xs">
+            <span class="font-semibold flex items-center gap-1.5">
+              <span>Cris & Enock</span>
+              <i data-lucide="maximize-2" class="w-3 h-3 text-gold-300"></i>
+            </span>
+            <span class="text-[10px] text-champagne-200">Clique para abrir Galeria 3D</span>
+          </div>
+        </div>
+
+        <div class="relative group rounded-2xl overflow-hidden aspect-square bg-champagne-200 shadow-md cursor-pointer" onclick="openGallery3D(1)">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Mural 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white text-xs">
+            <span class="font-semibold flex items-center gap-1.5">
+              <span>Mesa da Família</span>
+              <i data-lucide="maximize-2" class="w-3 h-3 text-gold-300"></i>
+            </span>
+            <span class="text-[10px] text-champagne-200">Clique para abrir Galeria 3D</span>
+          </div>
+        </div>
+
+        <div class="relative group rounded-2xl overflow-hidden aspect-square bg-champagne-200 shadow-md cursor-pointer" onclick="openGallery3D(2)">
+          <img src="assets/images/imgheroinicio.png" alt="Mural 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white text-xs">
+            <span class="font-semibold flex items-center gap-1.5">
+              <span>Areias Douradas</span>
+              <i data-lucide="maximize-2" class="w-3 h-3 text-gold-300"></i>
+            </span>
+            <span class="text-[10px] text-champagne-200">Clique para abrir Galeria 3D</span>
+          </div>
+        </div>
+
+        <div class="relative group rounded-2xl overflow-hidden aspect-square bg-champagne-200 shadow-md cursor-pointer" onclick="openGallery3D(3)">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Mural 4" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white text-xs">
+            <span class="font-semibold flex items-center gap-1.5">
+              <span>Amigos Queridos</span>
+              <i data-lucide="maximize-2" class="w-3 h-3 text-gold-300"></i>
+            </span>
+            <span class="text-[10px] text-champagne-200">Clique para abrir Galeria 3D</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 8ª DOBRA: DÚVIDAS FREQUENTES (FAQ EDITORIAL & INTERATIVO)                 -->
+  <!-- ========================================================================= -->
+  <section id="faq-section" class="py-24 sm:py-28 bg-gradient-to-b from-champagne-100/70 via-champagne-50 to-[#FAF6EE] relative overflow-hidden text-charcoal border-t border-champagne-300/60">
+    
+    <!-- Efeito Sutil de Iluminação Ambiente Dourada -->
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gold-200/20 blur-[100px] pointer-events-none rounded-full"></div>
+    <div class="absolute -bottom-20 right-10 w-[400px] h-[300px] bg-champagne-300/20 blur-[90px] pointer-events-none rounded-full"></div>
+
+    <div class="max-w-4xl mx-auto px-6 relative z-10">
+      
+      <!-- Cabeçalho da Seção -->
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <div class="inline-flex items-center gap-2 text-gold-600 mb-2">
+          <i data-lucide="help-circle" class="w-4 h-4"></i>
+          <span class="font-cinzel text-xs uppercase tracking-[0.25em]">Guia & Informações</span>
+        </div>
+        <h2 class="font-serif text-4xl sm:text-5xl text-charcoal font-light italic">
+          Dúvidas Frequentes
+        </h2>
+        <p class="font-sans text-xs sm:text-sm text-warmgray mt-3">
+          Reunimos aqui as principais respostas para que você aproveite cada instante do nosso casamento com total tranquilidade.
+        </p>
+      </div>
+
+      <!-- Lista Accordion de Dúvidas -->
+      <div class="space-y-4">
+        
+        <!-- Pergunta 1: Bebidas Alcoólicas -->
+        <div class="faq-item overflow-hidden">
+          <button 
+            type="button" 
+            onclick="toggleFaqItem(this)" 
+            class="w-full text-left px-6 py-5 sm:px-7 sm:py-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none select-none">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-xl bg-champagne-200/60 border border-gold-400/40 flex items-center justify-center text-gold-700 flex-shrink-0">
+                <i data-lucide="glass-water" class="w-5 h-5"></i>
+              </div>
+              <span class="font-serif text-lg sm:text-xl text-charcoal font-semibold">
+                Haverá bebidas alcoólicas na comemoração?
+              </span>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-champagne-100 flex items-center justify-center text-gold-600 flex-shrink-0 faq-chevron">
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </div>
+          </button>
+          <div class="faq-answer px-6 sm:px-7">
+            <div class="pb-6 pt-1 text-sm sm:text-base text-warmgray leading-relaxed border-t border-champagne-200/60">
+              Planejamos cada detalhe com muito carinho para criar uma celebração acolhedora, alegre e inesquecível para todas as famílias. Teremos um cardápio completo de bebidas não alcoólicas, incluindo refrigerantes, sucos selecionados, água e opções refrescantes. Informamos com carinho que <strong class="text-charcoal font-medium">não haverá fornecimento de bebidas alcoólicas no evento</strong>.
+            </div>
+          </div>
+        </div>
+
+        <!-- Pergunta 2: Regras de Vestimenta (Dress Code) -->
+        <div class="faq-item overflow-hidden">
+          <button 
+            type="button" 
+            onclick="toggleFaqItem(this)" 
+            class="w-full text-left px-6 py-5 sm:px-7 sm:py-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none select-none">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-xl bg-champagne-200/60 border border-gold-400/40 flex items-center justify-center text-gold-700 flex-shrink-0">
+                <i data-lucide="sparkles" class="w-5 h-5"></i>
+              </div>
+              <span class="font-serif text-lg sm:text-xl text-charcoal font-semibold">
+                Existe alguma regra ou exigência de vestimenta?
+              </span>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-champagne-100 flex items-center justify-center text-gold-600 flex-shrink-0 faq-chevron">
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </div>
+          </button>
+          <div class="faq-answer px-6 sm:px-7">
+            <div class="pb-6 pt-1 text-sm sm:text-base text-warmgray leading-relaxed border-t border-champagne-200/60">
+              <strong class="text-charcoal font-medium">Não há regras de vestimenta!</strong> Nosso maior desejo é que você venha confortável, elegante e pronto para comemorar junto conosco. Como sugestão para a ocasião, o traje <strong class="text-charcoal font-medium">Esporte Fino ou Passeio</strong> harmoniza perfeitamente com o clima e o ambiente da celebração.
+            </div>
+          </div>
+        </div>
+
+        <!-- Pergunta 3: Data e Horário -->
+        <div class="faq-item overflow-hidden">
+          <button 
+            type="button" 
+            onclick="toggleFaqItem(this)" 
+            class="w-full text-left px-6 py-5 sm:px-7 sm:py-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none select-none">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-xl bg-champagne-200/60 border border-gold-400/40 flex items-center justify-center text-gold-700 flex-shrink-0">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+              </div>
+              <span class="font-serif text-lg sm:text-xl text-charcoal font-semibold">
+                Qual é a data e o horário de início da cerimônia?
+              </span>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-champagne-100 flex items-center justify-center text-gold-600 flex-shrink-0 faq-chevron">
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </div>
+          </button>
+          <div class="faq-answer px-6 sm:px-7">
+            <div class="pb-6 pt-1 text-sm sm:text-base text-warmgray leading-relaxed border-t border-champagne-200/60">
+              A cerimônia solene acontecerá no dia <strong class="text-charcoal font-medium">09 de Janeiro de 2027 (Sábado)</strong>, com início pontual às <strong class="text-charcoal font-medium">19:00 horas</strong>. Para que todos possam encontrar seus lugares com tranquilidade e conforto, recomendamos a chegada às <strong class="text-charcoal font-medium">18:40h</strong>.
+            </div>
+          </div>
+        </div>
+
+        <!-- Pergunta 4: Endereço & Estacionamento -->
+        <div class="faq-item overflow-hidden">
+          <button 
+            type="button" 
+            onclick="toggleFaqItem(this)" 
+            class="w-full text-left px-6 py-5 sm:px-7 sm:py-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none select-none">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-xl bg-champagne-200/60 border border-gold-400/40 flex items-center justify-center text-gold-700 flex-shrink-0">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+              </div>
+              <span class="font-serif text-lg sm:text-xl text-charcoal font-semibold">
+                Onde acontecerá o evento e há estacionamento?
+              </span>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-champagne-100 flex items-center justify-center text-gold-600 flex-shrink-0 faq-chevron">
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </div>
+          </button>
+          <div class="faq-answer px-6 sm:px-7">
+            <div class="pb-6 pt-1 text-sm sm:text-base text-warmgray leading-relaxed border-t border-champagne-200/60">
+              A cerimônia e a recepção serão integradas no mesmo endereço: <strong class="text-charcoal font-medium">R. Roberto Ziemann, 5711 — Três Rios do Norte, Jaraguá do Sul — SC</strong>. O local dispõe de <strong class="text-charcoal font-medium">estacionamento amplo e gratuito</strong> para todos os convidados, além de ambiente climatizado e acessível.
+              <div class="mt-4 pt-1">
+                <a 
+                  href="https://www.google.com/maps/dir/?api=1&destination=R.+Roberto+Ziemann,+5711+-+Tr%C3%AAs+Rios+do+Norte,+Jaragu%C3%A1+do+Sul+-+SC" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  onclick="window.open(this.href, '_blank'); return false;"
+                  class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-charcoal hover:bg-black text-white text-xs font-semibold tracking-wider uppercase transition-all duration-300 shadow-sm hover:scale-[1.02] active:scale-95 border border-gold-400/30">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gold-400"></i>
+                  <span>Abrir no Google Maps</span>
+                  <i data-lucide="external-link" class="w-3 h-3 text-champagne-300/80"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pergunta 5: Confirmação de Presença -->
+        <div class="faq-item overflow-hidden">
+          <button 
+            type="button" 
+            onclick="toggleFaqItem(this)" 
+            class="w-full text-left px-6 py-5 sm:px-7 sm:py-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none select-none">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-xl bg-champagne-200/60 border border-gold-400/40 flex items-center justify-center text-gold-700 flex-shrink-0">
+                <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+              </div>
+              <span class="font-serif text-lg sm:text-xl text-charcoal font-semibold">
+                Como e até quando devo confirmar presença?
+              </span>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-champagne-100 flex items-center justify-center text-gold-600 flex-shrink-0 faq-chevron">
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </div>
+          </button>
+          <div class="faq-answer px-6 sm:px-7">
+            <div class="pb-6 pt-1 text-sm sm:text-base text-warmgray leading-relaxed border-t border-champagne-200/60">
+              Sua presença é fundamental para celebrarmos juntos! Solicitamos a gentileza de confirmar a presença da sua família até o dia <strong class="text-charcoal font-medium">15 de Dezembro de 2026</strong> diretamente no formulário de confirmação nesta página, facilitando o planejamento de cada detalhe com carinho.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER EDITORIAL DE LUXO — CRIS & ENOCK 2027                               -->
+  <!-- ========================================================================= -->
+  <footer class="relative bg-gradient-to-b from-[#151210] via-[#0D0B0A] to-[#070605] text-champagne-100 overflow-hidden border-t border-gold-400/30 pt-20 pb-12">
+    
+    <!-- Linha Dourada de Brilho no Topo -->
+    <div class="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-gold-400 to-transparent"></div>
+
+    <!-- Efeitos de Luz Ambiente Dourada (Aura Romântica) -->
+    <div class="absolute -top-36 left-1/2 -translate-x-1/2 w-[720px] h-[360px] bg-gold-500/10 blur-[120px] pointer-events-none rounded-full"></div>
+    <div class="absolute -bottom-36 right-4 w-[420px] h-[300px] bg-gold-600/8 blur-[100px] pointer-events-none rounded-full"></div>
+    <div class="absolute -bottom-36 left-4 w-[420px] h-[300px] bg-gold-600/8 blur-[100px] pointer-events-none rounded-full"></div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+
+      <!-- Nomes dos Noivos em Tipografia Editorial com Gradiente Dourado -->
+      <h2 class="font-script text-6xl sm:text-7xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-champagne-100 via-gold-300 to-champagne-100 mb-3 tracking-tight drop-shadow-lg select-none">
+        Cris & Enock
+      </h2>
+      
+      <!-- Subtítulo e Data Solene com Badge -->
+      <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/[0.04] border border-gold-400/30 backdrop-blur-sm mb-8 shadow-sm">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold-400"></i>
+        <span class="font-cinzel text-[11px] sm:text-xs tracking-[0.3em] uppercase text-champagne-100 font-light">
+          09 de Janeiro de 2027 • Jaraguá do Sul, SC
+        </span>
+        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold-400"></i>
+      </div>
+
+      <!-- Card do Versículo Bíblico em Estilo Papelaria de Casamento -->
+      <div class="relative max-w-2xl w-full mx-auto px-8 py-7 rounded-2xl bg-white/[0.03] border border-gold-400/20 backdrop-blur-sm text-center shadow-2xl my-4">
+        <span class="text-gold-400/40 font-serif text-3xl leading-none select-none block mb-1">“</span>
+        <p class="font-serif italic text-base sm:text-lg text-champagne-100/90 font-light leading-relaxed">
+          O amor é paciente, o amor é bondoso. Não inveja, não se vangloria, não se orgulha. Tudo sofre, tudo crê, tudo espera, tudo suporta.
+        </p>
+        <div class="w-16 h-[1px] bg-gradient-to-r from-transparent via-gold-400/60 to-transparent mx-auto my-3"></div>
+        <span class="font-cinzel text-[10px] sm:text-[11px] tracking-[0.25em] text-gold-400 uppercase font-semibold">1 Coríntios 13:4, 7</span>
+      </div>
+
+      <!-- Barra de Copyright e Mensagem de Carinho -->
+      <div class="pt-8 border-t border-white/10 w-full flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-warmgray mt-10">
+        <p class="flex items-center gap-1.5 text-champagne-300/80">
+          <span>Feito com todo o amor para o dia mais especial de nossas vidas</span>
+          <span class="text-gold-400">♥</span>
+        </p>
+        <p class="font-cinzel text-xs text-champagne-300/60 tracking-wider">
+          Cris & Enock © 2027 • Jaraguá do Sul, SC
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: CARTA DE CONVITE EM ALTA RESOLUÇÃO                                  -->
+  <!-- ========================================================================= -->
+  <div id="invitation-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+    <div class="relative max-w-2xl w-full bg-champagne-50 rounded-3xl overflow-hidden shadow-2xl border border-gold-400/60 p-4 sm:p-6 flex flex-col items-center">
+      
+      <button onclick="closeInvitationModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-charcoal text-white hover:bg-gold-600 transition-colors flex items-center justify-center z-10 shadow-lg cursor-pointer">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="w-full max-h-[75vh] overflow-y-auto rounded-xl shadow-inner border border-champagne-300">
+        <img src="assets/images/8kimgconvitefinal.png?v=6" alt="Carta de Convite Cris & Enock" class="w-full h-auto object-contain">
+      </div>
+
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-3 w-full">
+        <a href="assets/images/8kimgconvitefinal.png?v=6" download="Convite_Casamento_Cris_e_Enock.png" class="px-6 py-2.5 rounded-full bg-gradient-to-r from-gold-600 to-gold-500 text-charcoal font-semibold text-xs tracking-wider uppercase transition-all flex items-center gap-2 shadow hover:scale-105">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          <span>Baixar Convite (Ultra HD)</span>
+        </a>
+        <button onclick="closeInvitationModal()" class="px-6 py-2.5 rounded-full bg-charcoal text-white font-semibold text-xs tracking-wider uppercase transition-all shadow hover:bg-black cursor-pointer">
+          Fechar
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: GALERIA 3D INFINITA DOS CONVIDADOS (WEBGL THREE.JS FULLSCREEN)       -->
+  <!-- ========================================================================= -->
+  <div id="gallery-3d-modal" class="fixed inset-0 z-50 bg-[#070605] opacity-0 pointer-events-none transition-opacity duration-500 overflow-hidden select-none" style="display: none; touch-action: none;">
+    
+    <!-- Canvas 3D Three.js Fullscreen -->
+    <canvas id="gallery-3d-canvas" class="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing z-0" style="touch-action: none;"></canvas>
+
+    <!-- Botão Fechar (Único elemento de controle fixo no topo direito) -->
+    <button onclick="closeGallery3D()" class="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-black/90 text-white hover:text-gold-300 backdrop-blur-md border border-white/20 hover:border-gold-400/80 transition-all duration-300 flex items-center justify-center cursor-pointer shadow-2xl active:scale-90 pointer-events-auto" title="Fechar Galeria (ESC)">
+      <i data-lucide="x" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+    </button>
+
+    <!-- Elementos do Meio: Texto Editorial Cinematográfico -->
+    <div class="pointer-events-none fixed inset-0 flex flex-col items-center justify-center text-center px-4 mix-blend-exclusion text-white/90 z-10 select-none">
+      <h1 class="font-serif italic text-3xl sm:text-5xl md:text-7xl lg:text-8xl tracking-tight drop-shadow-md">
+        Cris <span class="text-gold-300 font-script text-4xl sm:text-6xl md:text-8xl lg:text-9xl not-italic">&</span> Enock
+      </h1>
+      <p class="font-cinzel text-[9px] sm:text-xs tracking-[0.3em] uppercase text-champagne-100/75 mt-1 sm:mt-2 font-light">
+        Nossas Memórias & Amigos Queridos
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: LIGHTBOX DE FOTOS COM NAVEGAÇÃO (SETAS ANTERIOR / PRÓXIMO)        -->
+  <!-- ========================================================================= -->
+  <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/92 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-opacity duration-300 select-none" style="display: none;" onclick="closeLightbox()">
+    
+    <!-- Botão Fechar (Topo Direito) -->
+    <button onclick="closeLightbox()" class="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-black/90 text-white hover:text-gold-300 backdrop-blur-md border border-white/20 hover:border-gold-400/80 transition-all duration-300 flex items-center justify-center cursor-pointer shadow-2xl active:scale-90 pointer-events-auto" title="Fechar (ESC)">
+      <i data-lucide="x" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+    </button>
+
+    <!-- Botão Seta para Trás (Foto Anterior) -->
+    <button id="lightbox-prev-btn" onclick="navigateLightbox(-1); event.stopPropagation();" class="fixed left-2 sm:left-6 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/60 hover:bg-black/90 text-white hover:text-gold-300 backdrop-blur-md border border-white/25 hover:border-gold-400/80 transition-all duration-300 flex items-center justify-center cursor-pointer shadow-2xl active:scale-90 pointer-events-auto group" title="Foto Anterior (Seta Esquerda)">
+      <i data-lucide="chevron-left" class="w-6 h-6 sm:w-8 sm:h-8 group-hover:-translate-x-0.5 transition-transform"></i>
+    </button>
+
+    <!-- Botão Seta para Frente (Próxima Foto) -->
+    <button id="lightbox-next-btn" onclick="navigateLightbox(1); event.stopPropagation();" class="fixed right-2 sm:right-6 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/60 hover:bg-black/90 text-white hover:text-gold-300 backdrop-blur-md border border-white/25 hover:border-gold-400/80 transition-all duration-300 flex items-center justify-center cursor-pointer shadow-2xl active:scale-90 pointer-events-auto group" title="Próxima Foto (Seta Direita)">
+      <i data-lucide="chevron-right" class="w-6 h-6 sm:w-8 sm:h-8 group-hover:translate-x-0.5 transition-transform"></i>
+    </button>
+
+    <!-- Card Central: Apenas a Imagem Limpa em Destaque (Sem Legenda) -->
+    <div class="relative max-w-5xl w-full flex flex-col items-center justify-center px-2 sm:px-16" onclick="event.stopPropagation()">
+      <div class="relative overflow-hidden rounded-2xl shadow-2xl border border-champagne-300/30 bg-black/50 max-h-[86vh] flex items-center justify-center">
+        <img id="lightbox-img" src="" alt="Foto expandida" class="max-h-[86vh] max-w-full w-auto object-contain transition-opacity duration-200">
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: CONFIRMAÇÃO DE PRESENÇA CONCLUÍDA                                   -->
+  <!-- ========================================================================= -->
+  <div id="rsvp-success-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+    <div class="glass-card rounded-3xl p-8 sm:p-12 max-w-md w-full text-center border border-gold-400 shadow-2xl transform scale-95 transition-transform duration-300">
+      
+      <div class="w-20 h-20 rounded-full bg-gold-100 text-gold-600 flex items-center justify-center mx-auto mb-6 shadow-inner border border-gold-300">
+        <i data-lucide="heart" class="w-10 h-10 fill-gold-500 text-gold-600 animate-pulse"></i>
+      </div>
+
+      <span class="font-cinzel text-xs uppercase tracking-widest text-gold-700 font-bold block mb-1">
+        Presença Garantida
+      </span>
+
+      <h3 class="font-serif text-3xl sm:text-4xl text-charcoal font-semibold mb-3">
+        Muito Obrigado!
+      </h3>
+
+      <p id="rsvp-modal-text" class="text-sm text-warmgray leading-relaxed mb-8">
+        Sua confirmação foi registrada com sucesso! Mal podemos esperar para celebrar esse dia inesquecível com você.
+      </p>
+
+      <button onclick="closeRsvpSuccessModal()" class="w-full py-3.5 rounded-full bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 text-charcoal font-bold text-xs tracking-widest uppercase transition-all shadow-lg hover:scale-105 cursor-pointer">
+        Voltar ao Site
+      </button>
+
+    </div>
+  </div>
+
+
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT & LOGIC                                                        -->
+  <!-- ========================================================================= -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    /* -------------------------------------------------------------------------
+       DOM ELEMENTS INITIALIZATION (Declarados primeiro para evitar qualquer ReferenceError)
+       ------------------------------------------------------------------------- */
+    const heroVideo = document.getElementById('hero-video');
+    const heroFinalImg = document.getElementById('hero-final-img');
+    const heroGradientOverlay = document.getElementById('hero-gradient-overlay');
+    const heroContent = document.getElementById('hero-content');
+    const skipVideoBtn = document.getElementById('skip-video-btn');
+
+    const bgMusic = document.getElementById('wedding-bg-music');
+    const audioToggleBtn = document.getElementById('audio-toggle-btn');
+    const eqContainer = document.getElementById('eq-container');
+    const audioLabel = document.getElementById('audio-label');
+    const audioPauseIcon = document.getElementById('audio-pause-icon');
+    const audioPlayIcon = document.getElementById('audio-play-icon');
+
+    /* -------------------------------------------------------------------------
+       1. AMBIENT AUDIO SYSTEM (musica.mp3/m4a/mp4) - ATIVADO AUTOMATICAMENTE
+       ------------------------------------------------------------------------- */
+    let isPlayingAudio = false;
+    let userExplicitlyPaused = false;
+
+    if (bgMusic) {
+      bgMusic.volume = 0.65;
+    }
+
+    function updateAudioUI(isPlaying) {
+      if (isPlaying) {
+        isPlayingAudio = true;
+        if (eqContainer) eqContainer.classList.remove('eq-paused');
+        if (audioPauseIcon) audioPauseIcon.classList.remove('hidden');
+        if (audioPlayIcon) audioPlayIcon.classList.add('hidden');
+        if (audioLabel) audioLabel.textContent = "Pausar";
+        if (audioToggleBtn) audioToggleBtn.setAttribute('title', 'Pausar Trilha Sonora');
+      } else {
+        isPlayingAudio = false;
+        if (eqContainer) eqContainer.classList.add('eq-paused');
+        if (audioPauseIcon) audioPauseIcon.classList.add('hidden');
+        if (audioPlayIcon) audioPlayIcon.classList.remove('hidden');
+        if (audioLabel) audioLabel.textContent = "Tocar";
+        if (audioToggleBtn) audioToggleBtn.setAttribute('title', 'Tocar Trilha Sonora');
+      }
+    }
+
+    function playAudio() {
+      if (!bgMusic) return;
+      userExplicitlyPaused = false;
+      const promise = bgMusic.play();
+      if (promise !== undefined) {
+        promise.then(() => {
+          updateAudioUI(true);
+        }).catch(err => {
+          // Caso a política de autoplay do navegador requeira interação prévia
+          updateAudioUI(false);
+          console.log("Autoplay aguardando primeira interação:", err);
+        });
+      }
+    }
+
+    function pauseAudio() {
+      if (!bgMusic) return;
+      userExplicitlyPaused = true;
+      bgMusic.pause();
+      updateAudioUI(false);
+    }
+
+    function toggleAudio(e) {
+      if (e) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
+      if (!bgMusic) return;
+
+      if (!bgMusic.paused) {
+        pauseAudio();
+      } else {
+        playAudio();
+      }
+    }
+
+    if (audioToggleBtn) {
+      audioToggleBtn.addEventListener('click', toggleAudio);
+      audioToggleBtn.addEventListener('touchend', (e) => {
+        toggleAudio(e);
+      });
+    }
+
+    // Tenta iniciar a música imediatamente ao recarregar a página
+    playAudio();
+    window.addEventListener('load', playAudio);
+
+    // Fallback de garantia: se o navegador bloquear o autoplay por falta de gesto prévio,
+    // a música inicia instantaneamente ao primeiro clique, toque ou rolagem
+    const unlockAudioOnFirstInteraction = () => {
+      if (!userExplicitlyPaused && bgMusic && bgMusic.paused) {
+        playAudio();
+      }
+    };
+    ['click', 'touchstart', 'scroll', 'wheel', 'keydown', 'pointerdown'].forEach((evt) => {
+      window.addEventListener(evt, unlockAudioOnFirstInteraction, { capture: true, once: true });
+      document.addEventListener(evt, unlockAudioOnFirstInteraction, { capture: true, once: true });
+    });
+
+    /* -------------------------------------------------------------------------
+       2. INITIAL VIDEO TRANSITION (Couple_embracing_on_sandy_beach -> imgherofinal)
+       ------------------------------------------------------------------------- */
+    let videoHandled = false;
+
+    function transitionVideoToHero() {
+      if (videoHandled) return;
+      videoHandled = true;
+
+      if (heroFinalImg) heroFinalImg.style.opacity = '1';
+      if (heroGradientOverlay) heroGradientOverlay.style.opacity = '1';
+      if (heroVideo) {
+        heroVideo.style.opacity = '0';
+        heroVideo.style.pointerEvents = 'none';
+        setTimeout(() => {
+          try {
+            heroVideo.pause();
+            heroVideo.style.display = 'none';
+          } catch(e) {}
+        }, 1100);
+      }
+
+      if (skipVideoBtn) {
+        skipVideoBtn.style.opacity = '0';
+        skipVideoBtn.style.pointerEvents = 'none';
+      }
+
+      if (heroContent) {
+        heroContent.style.opacity = '1';
+        heroContent.style.transform = 'translateY(0)';
+      }
+    }
+
+    if (heroVideo) {
+      // Transição suave quando o vídeo de 4.8s estiver a 0.4s do final
+      heroVideo.addEventListener('timeupdate', () => {
+        if (!videoHandled && heroVideo.duration > 0) {
+          if (heroVideo.currentTime >= heroVideo.duration - 0.4) {
+            transitionVideoToHero();
+          }
+        }
+      });
+
+      // Evento ended nativo
+      heroVideo.addEventListener('ended', transitionVideoToHero);
+
+      // Caso o vídeo pause no último frame
+      heroVideo.addEventListener('pause', () => {
+        if (!videoHandled && heroVideo.currentTime > 2.0) {
+          transitionVideoToHero();
+        }
+      });
+    }
+
+    if (skipVideoBtn) {
+      skipVideoBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (heroVideo) {
+          try { heroVideo.pause(); } catch(err) {}
+        }
+        transitionVideoToHero();
+      });
+    }
+
+    // Inicialização do vídeo no segundo 0 e prevenção de restauração no cache
+    if (heroVideo) {
+      try {
+        heroVideo.currentTime = 0;
+        const playPromise = heroVideo.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {});
+        }
+      } catch (e) {}
+    }
+
+    window.addEventListener('beforeunload', () => {
+      window.scrollTo(0, 0);
+    });
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        window.scrollTo(0, 0);
+      }
+    });
+
+    // Timer de segurança: após 5 segundos, obrigatoriamente transiciona para a imagem e informações
+    setTimeout(() => {
+      if (!videoHandled) {
+        transitionVideoToHero();
+      }
+    }, 5000);
+
+    /* -------------------------------------------------------------------------
+       3. COUNTDOWN TIMER (09 de Janeiro de 2027 às 19:00:00 BRT)
+          Efeito NumberFlow (transição vertical dos números)
+       ------------------------------------------------------------------------- */
+    const weddingDate = new Date('2027-01-09T19:00:00-03:00').getTime();
+
+    function setAnimatedValue(elementId, newValue) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      if (el.textContent !== newValue) {
+        el.textContent = newValue;
+      }
+    }
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance < 0) {
+        setAnimatedValue('cd-days', '00');
+        setAnimatedValue('cd-hours', '00');
+        setAnimatedValue('cd-minutes', '00');
+        setAnimatedValue('cd-seconds', '00');
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      setAnimatedValue('cd-days', String(days).padStart(2, '0'));
+      setAnimatedValue('cd-hours', String(hours).padStart(2, '0'));
+      setAnimatedValue('cd-minutes', String(minutes).padStart(2, '0'));
+      setAnimatedValue('cd-seconds', String(seconds).padStart(2, '0'));
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    /* -------------------------------------------------------------------------
+       4. LENIS SMOOTH SCROLL (Momentum 60/120fps Silky Scrolling)
+       Elimina travamentos, solavancos e engasgos em toda a página
+       ------------------------------------------------------------------------- */
+    const lenis = new Lenis({
+      duration: 0.85,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1.05,
+      touchMultiplier: 1.4,
+      syncTouch: false, // Preserva a rolagem nativa ultra-fluida em telas touch
+      autoRaf: false,
+    });
+    window.lenis = lenis;
+
+    // Sincroniza Lenis com o ScrollTrigger do GSAP
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    // lagSmoothing(0) garante timestamp contínuo e sem saltos bruscos no cálculo de momentum do Lenis
+    gsap.ticker.lagSmoothing(500, 33);
+
+    // Navegação suave ao clicar em botões com âncoras (#)
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId !== '#') {
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            lenis.scrollTo(targetEl, { offset: 0, duration: 1.1 });
+          }
+        }
+      });
+    });
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Previne que o ScrollTrigger ou o navegador restaurem posição de rolagem no F5
+    if (typeof window !== 'undefined' && window.history && 'scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    if (typeof ScrollTrigger !== 'undefined' && ScrollTrigger.clearScrollMemory) {
+      ScrollTrigger.clearScrollMemory('manual');
+    }
+    window.scrollTo(0, 0);
+
+    /* -------------------------------------------------------------------------
+       5. STORYTELLING PIN & WORD HIGHLIGHT (GSAP ScrollTrigger)
+       Trava a tela 100% durante a leitura do texto e só libera ao finalizar
+       ------------------------------------------------------------------------- */
+    const storyWords = Array.from(document.querySelectorAll('.story-word'));
+    const storyProgressBar = document.getElementById('story-progress-bar');
+    const storyScrollHint = document.getElementById('story-scroll-hint');
+    let lastStoryDone = false;
+
+    // Inicializa palavras com opacidade sutil (0.18)
+    gsap.set(storyWords, { opacity: 0.18 });
+
+    const storyTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#story-pin-section',
+        start: 'top top',
+        end: '+=180%',
+        pin: '#story-pin-wrapper',
+        scrub: 0.2,
+        anticipatePin: 1,
+        onUpdate: (self) => {
+          if (storyProgressBar) {
+            storyProgressBar.style.transform = `scaleX(${self.progress})`;
+          }
+          if (storyScrollHint) {
+            const isDone = self.progress >= 0.96;
+            if (isDone !== lastStoryDone) {
+              lastStoryDone = isDone;
+              if (isDone) {
+                storyScrollHint.textContent = "Capítulo concluído • Continue rolando";
+                storyScrollHint.classList.add('text-gold-600', 'font-semibold');
+              } else {
+                storyScrollHint.textContent = "Gire a roda do mouse para acompanhar a leitura";
+                storyScrollHint.classList.remove('text-gold-600', 'font-semibold');
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // Animação GPU pura: apenas opacity com stagger leve (zero repaint de cores)
+    storyTimeline.to(storyWords, {
+      opacity: 1,
+      stagger: 0.035,
+      ease: "none",
+      duration: 0.2
+    });
+
+    /* -------------------------------------------------------------------------
+       5. CONTINUOUS INFINITE CAROUSEL INTERACTION
+       ------------------------------------------------------------------------- */
+    const infiniteCarouselContainer = document.getElementById('infinite-carousel-container');
+    if (infiniteCarouselContainer) {
+      infiniteCarouselContainer.addEventListener('touchstart', () => {
+        infiniteCarouselContainer.classList.add('is-paused');
+      }, { passive: true });
+      infiniteCarouselContainer.addEventListener('touchend', () => {
+        setTimeout(() => {
+          infiniteCarouselContainer.classList.remove('is-paused');
+        }, 1500);
+      }, { passive: true });
+    }
+
+    /* -------------------------------------------------------------------------
+       6. CANVAS SCROLL SCRUBBING (200 FRAMES) COM BUFFERING INTELIGENTE
+       ------------------------------------------------------------------------- */
+    const canvas = document.getElementById('canvas-scrub');
+    const ctx = canvas ? canvas.getContext('2d', { alpha: false, desynchronized: true }) : null;
+    if (ctx) {
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'medium';
+    }
+    const canvasLoader = document.getElementById('canvas-loader');
+    const loaderProgress = document.getElementById('loader-progress');
+
+    const TOTAL_FRAMES = 200;
+    const FINAL_8K_PATH = 'assets/images/8kimgconvitefinal.png?v=6';
+    const final8kImg = new Image();
+    final8kImg.decoding = 'async';
+    final8kImg.src = FINAL_8K_PATH;
+    final8kImg.onload = () => {
+      if (currentFrameIndex >= 199) {
+        lastRenderedFrame = -1;
+        renderFrame(currentFrameIndex);
+      }
+    };
+
+    const frames = [];
+    let loadedCount = 0;
+    let currentFrameIndex = 1;
+    let lastRenderedFrame = -1;
+    let renderPending = false;
+    let targetFrameIndex = 1;
+
+    function getFramePath(index) {
+      const paddedNumber = String(index).padStart(3, '0');
+      if (index === 200) {
+        return `assets/envelope-frames/ezgif-frame-200.jpg?v=6`;
+      }
+      return `assets/envelope-frames/ezgif-frame-${paddedNumber}.jpg`;
+    }
+
+    function resizeCanvas() {
+      if (!canvas) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+      canvas.width = Math.round(window.innerWidth * dpr);
+      canvas.height = Math.round(window.innerHeight * dpr);
+      lastRenderedFrame = -1;
+      renderFrame(currentFrameIndex);
+    }
+    window.addEventListener('resize', resizeCanvas);
+
+    // Encontra o frame carregado mais próximo para nunca deixar tela preta ou engasgar
+    function findClosestFrame(index) {
+      // Quando atingir o final (quadros 199/200), renderiza a imagem 8K em altíssima definição
+      if (index >= 199 && final8kImg.complete && final8kImg.naturalWidth > 0) {
+        return final8kImg;
+      }
+      if (frames[index] && frames[index].complete && frames[index].naturalWidth > 0) {
+        return frames[index];
+      }
+      for (let offset = 1; offset < 25; offset++) {
+        const prev = index - offset;
+        if (prev >= 1 && frames[prev] && frames[prev].complete && frames[prev].naturalWidth > 0) {
+          return frames[prev];
+        }
+        const next = index + offset;
+        if (next <= TOTAL_FRAMES && frames[next] && frames[next].complete && frames[next].naturalWidth > 0) {
+          return frames[next];
+        }
+      }
+      return frames[1] && frames[1].complete ? frames[1] : null;
+    }
+
+    function renderFrame(index) {
+      if (!ctx || !canvas) return;
+      const img = findClosestFrame(index);
+      if (!img || !img.complete || img.naturalWidth === 0) return;
+
+      lastRenderedFrame = index;
+      const cw = canvas.width;
+      const ch = canvas.height;
+      const iw = img.naturalWidth;
+      const ih = img.naturalHeight;
+
+      // Desktop / Telas em Paisagem (cw >= ch ou telas a partir de 768px):
+      if (cw >= ch || cw >= 768) {
+        ctx.clearRect(0, 0, cw, ch);
+        const ratio = Math.max(cw / iw, ch / ih);
+        const drawW = iw * ratio;
+        const drawH = ih * ratio;
+        const dx = (cw - drawW) / 2;
+        const dy = (ch - drawH) / 2;
+        ctx.drawImage(img, 0, 0, iw, ih, dx, dy, drawW, drawH);
+      } else {
+        // Mobile / Telas Verticais (cw < ch):
+        // No frame original 1920x1080, o cartão tem 609px de largura (X: 656 a 1265) e centro X=960.5.
+        // Dimensionamos a carta para 84% da largura da tela, exibindo perfeitamente as bordas laterais do convite!
+        const targetCardW = Math.min(cw * 0.84, cw - 36);
+        const ratio = targetCardW / 609;
+        const drawW = iw * ratio;
+        const drawH = ih * ratio;
+        const dx = (cw / 2) - (960.5 * ratio);
+        const dy = (ch - drawH) / 2;
+
+        // Fundo em tom de seda quente e harmonioso
+        ctx.fillStyle = '#BA9B7E';
+        ctx.fillRect(0, 0, cw, ch);
+
+        if (dy > 0) {
+          ctx.fillStyle = '#B39375';
+          ctx.fillRect(0, dy + drawH, cw, ch - (dy + drawH));
+        }
+
+        // Desenho contínuo da imagem (camada única, sem fatiamentos ou duplicação de vídeo)
+        ctx.drawImage(img, 0, 0, iw, ih, dx, dy, drawW, drawH);
+
+        // Suavização elegante (feathering) nas bordas superior e inferior do vídeo
+        if (dy > 0) {
+          const feather = Math.min(45, dy);
+
+          // Gradiente suave no topo
+          const topGrad = ctx.createLinearGradient(0, dy, 0, dy + feather);
+          topGrad.addColorStop(0, '#BA9B7E');
+          topGrad.addColorStop(1, 'rgba(186, 155, 126, 0)');
+          ctx.fillStyle = topGrad;
+          ctx.fillRect(0, dy - 1, cw, feather + 2);
+
+          // Gradiente suave na base
+          const botY = dy + drawH;
+          const botGrad = ctx.createLinearGradient(0, botY - feather, 0, botY);
+          botGrad.addColorStop(0, 'rgba(179, 147, 117, 0)');
+          botGrad.addColorStop(1, '#B39375');
+          ctx.fillStyle = botGrad;
+          ctx.fillRect(0, botY - feather, cw, feather + 2);
+        }
+      }
+    }
+
+    function scheduleFrameRender(index) {
+      targetFrameIndex = index;
+      if (!renderPending) {
+        renderPending = true;
+        requestAnimationFrame(() => {
+          renderPending = false;
+          if (targetFrameIndex !== currentFrameIndex || lastRenderedFrame !== targetFrameIndex) {
+            currentFrameIndex = targetFrameIndex;
+            renderFrame(targetFrameIndex);
+          }
+        });
+      }
+    }
+
+    function loadSingleFrame(i, onLoaded) {
+      if (frames[i]) {
+        if (onLoaded && frames[i].complete) onLoaded();
+        return;
+      }
+      const img = new Image();
+      img.decoding = 'async';
+      img.src = getFramePath(i);
+      img.onload = () => {
+        loadedCount++;
+        if (loaderProgress) {
+          loaderProgress.textContent = `${Math.round((loadedCount / TOTAL_FRAMES) * 100)}%`;
+        }
+        if (i === 1) {
+          resizeCanvas();
+        }
+        if (loadedCount >= 10 && canvasLoader && canvasLoader.style.opacity !== '0') {
+          canvasLoader.style.opacity = '0';
+          setTimeout(() => { canvasLoader.style.display = 'none'; }, 400);
+        }
+        if (onLoaded) onLoaded();
+      };
+      frames[i] = img;
+    }
+
+    // Carrega o Frame 1 imediatamente para render inicial
+    loadSingleFrame(1, () => {
+      resizeCanvas();
+    });
+
+    // Pré-carregamento progressivo em 2 etapas:
+    // 1. Sparse skeleton (a cada 8 frames) para cobrir 100% da linha do tempo rapidamente
+    // 2. Preenchimento fluido dos frames intermediários sem roubar CPU da rolagem
+    let framesLoadingStarted = false;
+    function startProgressiveFrameLoading() {
+      if (framesLoadingStarted) return;
+      framesLoadingStarted = true;
+
+      const sparseFrames = [];
+      for (let i = 1; i <= TOTAL_FRAMES; i += 8) {
+        sparseFrames.push(i);
+      }
+      if (sparseFrames[sparseFrames.length - 1] !== TOTAL_FRAMES) {
+        sparseFrames.push(TOTAL_FRAMES);
+      }
+
+      let sparseIdx = 0;
+      function loadNextSparseBatch() {
+        const batch = sparseFrames.slice(sparseIdx, sparseIdx + 6);
+        batch.forEach(idx => loadSingleFrame(idx));
+        sparseIdx += 6;
+        if (sparseIdx < sparseFrames.length) {
+          setTimeout(loadNextSparseBatch, 80);
+        } else {
+          loadRemainingFrames(2);
+        }
+      }
+      loadNextSparseBatch();
+
+      function loadRemainingFrames(startFrom) {
+        let current = startFrom;
+        const BATCH = 6;
+        function runBatch() {
+          if (current > TOTAL_FRAMES) return;
+          const end = Math.min(current + BATCH, TOTAL_FRAMES + 1);
+          for (let i = current; i < end; i++) {
+            if (!frames[i]) loadSingleFrame(i);
+          }
+          current = end;
+          if (current <= TOTAL_FRAMES) {
+            if ('requestIdleCallback' in window) {
+              requestIdleCallback(runBatch, { timeout: 400 });
+            } else {
+              setTimeout(runBatch, 100);
+            }
+          }
+        }
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(runBatch, { timeout: 500 });
+        } else {
+          setTimeout(runBatch, 150);
+        }
+      }
+    }
+
+    // Inicia carregamento antecipado ao se aproximar da seção do convite
+    const conviteSectionEl = document.getElementById('convite-scroll-section');
+    if (conviteSectionEl) {
+      const conviteObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            startProgressiveFrameLoading();
+            conviteObserver.disconnect();
+          }
+        });
+      }, { rootMargin: '800px 0px' });
+      conviteObserver.observe(conviteSectionEl);
+    }
+    // Fallback apenas quando o navegador estiver 100% ocioso
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => setTimeout(startProgressiveFrameLoading, 5000));
+    } else {
+      setTimeout(startProgressiveFrameLoading, 7000);
+    }
+
+    // GSAP ScrollTrigger Scrubbing Sequence (Interpolação contínua e suave a 60/120fps)
+    const frameSeq = { frame: 1 };
+    gsap.to(frameSeq, {
+      frame: TOTAL_FRAMES,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#convite-scroll-section",
+        start: "top top",
+        end: "+=260%",
+        pin: "#canvas-pin-wrapper",
+        scrub: 0.15,
+        onUpdate: () => {
+          const idx = Math.min(TOTAL_FRAMES, Math.max(1, Math.round(frameSeq.frame)));
+          scheduleFrameRender(idx);
+        }
+      }
+    });
+
+    // Toque/clique na carta aberta no canvas permite ampliar em alta resolução Ultra HD 8K
+    if (canvas) {
+      canvas.addEventListener('click', () => {
+        if (currentFrameIndex >= 165) {
+          openInvitationModal();
+        }
+      });
+    }
+
+    /* -------------------------------------------------------------------------
+       7. INVITATION & LIGHTBOX MODALS
+       ------------------------------------------------------------------------- */
+    const invitationModal = document.getElementById('invitation-modal');
+    function openInvitationModal() {
+      if (window.lenis) lenis.stop();
+      invitationModal.style.opacity = '1';
+      invitationModal.style.pointerEvents = 'auto';
+    }
+    function closeInvitationModal() {
+      if (window.lenis) lenis.start();
+      invitationModal.style.opacity = '0';
+      invitationModal.style.pointerEvents = 'none';
+    }
+
+    /* -------------------------------------------------------------------------
+       7. LIGHTBOX DE FOTOS COM NAVEGAÇÃO SEQUENCIAL (SETAS, TECLADO E SWIPE)
+       ------------------------------------------------------------------------- */
+    const lightboxModal = document.getElementById('lightbox-modal');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+
+    let currentLightboxIndex = 0;
+    let currentLightboxList = [];
+
+    function getLightboxSourceList() {
+      if (typeof gallery3DImages !== 'undefined' && Array.isArray(gallery3DImages) && gallery3DImages.length > 0) {
+        return gallery3DImages;
+      }
+      return [
+        { src: 'assets/images/imgherofinal.png', alt: 'Cris & Enock — Noivos' },
+        { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80', alt: 'Mesa da Família' },
+        { src: 'assets/images/imgheroinicio.png', alt: 'Areias Douradas' },
+        { src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80', alt: 'Amigos Queridos' },
+        { src: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=85', alt: 'Olhares que se Cruzam' },
+        { src: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1200&q=85', alt: 'A Promessa' },
+        { src: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1200&q=85', alt: 'Caminho a Dois' },
+        { src: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=85', alt: 'Sorrisos Compartilhados' },
+        { src: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=1200&q=85', alt: 'O Abraço Seguro' },
+        { src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1200&q=85', alt: 'Celebrando com Amor' },
+        { src: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1200&q=85', alt: 'Brinde dos Padrinhos' },
+        { src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=85', alt: 'Flores & Luzes' }
+      ];
+    }
+
+    function renderLightboxContent(animate = false) {
+      if (!currentLightboxList || currentLightboxList.length === 0) {
+        currentLightboxList = getLightboxSourceList();
+      }
+      if (currentLightboxList.length === 0) return;
+
+      currentLightboxIndex = ((currentLightboxIndex % currentLightboxList.length) + currentLightboxList.length) % currentLightboxList.length;
+      const item = currentLightboxList[currentLightboxIndex];
+
+      if (animate) {
+        lightboxImg.style.opacity = '0.35';
+        setTimeout(() => {
+          lightboxImg.src = item.src;
+          lightboxImg.alt = item.alt || 'Momento do Casamento';
+          lightboxImg.style.opacity = '1';
+        }, 110);
+      } else {
+        lightboxImg.src = item.src;
+        lightboxImg.alt = item.alt || 'Momento do Casamento';
+        lightboxImg.style.opacity = '1';
+      }
+
+
+    }
+
+    function openLightbox(url, caption) {
+      if (window.lenis) lenis.stop();
+
+      currentLightboxList = [...getLightboxSourceList()];
+
+      // Localiza o índice da imagem aberta na lista
+      let foundIdx = currentLightboxList.findIndex(item => item.src === url);
+      if (foundIdx === -1) {
+        foundIdx = currentLightboxList.findIndex(item => item.src.includes(url) || url.includes(item.src));
+      }
+      if (foundIdx === -1) {
+        // Se for uma foto que não estava na lista, adiciona para que o usuário possa navegar
+        currentLightboxList.push({ src: url, alt: caption || 'Foto do Casamento' });
+        foundIdx = currentLightboxList.length - 1;
+      } else if (caption && !currentLightboxList[foundIdx].alt) {
+        currentLightboxList[foundIdx].alt = caption;
+      }
+
+      currentLightboxIndex = foundIdx;
+      renderLightboxContent(false);
+
+      lightboxModal.style.display = 'flex';
+      setTimeout(() => {
+        lightboxModal.style.opacity = '1';
+        lightboxModal.style.pointerEvents = 'auto';
+      }, 10);
+
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    function navigateLightbox(direction) {
+      if (!currentLightboxList || currentLightboxList.length <= 1) return;
+      currentLightboxIndex += direction;
+      renderLightboxContent(true);
+    }
+
+    function closeLightbox() {
+      lightboxModal.style.opacity = '0';
+      lightboxModal.style.pointerEvents = 'none';
+      setTimeout(() => {
+        lightboxModal.style.display = 'none';
+        if (window.lenis) lenis.start();
+      }, 300);
+    }
+
+    // Navegação via Teclado Global no Lightbox (Setas e ESC)
+    window.addEventListener('keydown', (e) => {
+      const isLightboxOpen = lightboxModal && (lightboxModal.style.opacity === '1' || lightboxModal.style.pointerEvents === 'auto');
+      if (isLightboxOpen) {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          navigateLightbox(-1);
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          navigateLightbox(1);
+        } else if (e.key === 'Escape') {
+          e.preventDefault();
+          closeLightbox();
+        }
+      }
+    });
+
+    // Navegação via Touch Swipe no Smartphone (deslizar para a esquerda ou direita)
+    let lbTouchStartX = 0;
+    let lbTouchStartY = 0;
+    if (lightboxModal) {
+      lightboxModal.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches.length > 0) {
+          lbTouchStartX = e.touches[0].clientX;
+          lbTouchStartY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      lightboxModal.addEventListener('touchend', (e) => {
+        if (e.changedTouches && e.changedTouches.length > 0) {
+          const deltaX = e.changedTouches[0].clientX - lbTouchStartX;
+          const deltaY = e.changedTouches[0].clientY - lbTouchStartY;
+          if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 40) {
+            if (deltaX < 0) {
+              navigateLightbox(1); // Swipe para a esquerda -> próxima foto
+            } else {
+              navigateLightbox(-1); // Swipe para a direita -> foto anterior
+            }
+          }
+        }
+      }, { passive: true });
+    }
+
+    /* -------------------------------------------------------------------------
+       8. RSVP FORM MULTI-GUEST HANDLING & SUBMISSION
+       ------------------------------------------------------------------------- */
+    const acompanhantesContainer = document.getElementById('acompanhantes-container');
+    let acompanhanteCount = 0;
+
+    function addAcompanhante() {
+      acompanhanteCount++;
+      const id = `acomp-${acompanhanteCount}`;
+      const row = document.createElement('div');
+      row.id = id;
+      row.className = "flex items-center gap-2 p-2.5 rounded-xl bg-white/55 border border-white/60 shadow-sm";
+      row.innerHTML = `
+        <input 
+          type="text" 
+          placeholder="Nome completo do acompanhante" 
+          required 
+          class="flex-1 min-w-0 px-3 py-2 rounded-lg bg-white/55 border border-white/50 text-xs text-charcoal outline-none focus:border-gold-500 acomp-nome">
+        <select class="px-2.5 py-2 rounded-lg bg-white/55 border border-white/50 text-xs text-charcoal outline-none focus:border-gold-500 acomp-tipo flex-shrink-0">
+          <option value="Adulto">Adulto</option>
+          <option value="Criança">Criança</option>
+        </select>
+        <button type="button" onclick="removeAcompanhante('${id}')" class="p-2 text-rose-500 hover:text-rose-700 hover:bg-rose-50/80 rounded-lg transition-colors cursor-pointer flex-shrink-0" title="Remover">
+          <i data-lucide="trash-2" class="w-4 h-4"></i>
+        </button>
+      `;
+      acompanhantesContainer.appendChild(row);
+      lucide.createIcons();
+    }
+
+    function removeAcompanhante(id) {
+      const el = document.getElementById(id);
+      if (el) el.remove();
+    }
+
+    // Máscara e Validador Inteligente de WhatsApp / Telefone Brasileiro
+    const telInput = document.getElementById('titular-whatsapp');
+    const telErrorMsg = document.getElementById('whatsapp-error-msg');
+    const telErrorText = document.getElementById('whatsapp-error-text');
+
+    function formatBrazilianPhone(val) {
+      let digits = (val || '').replace(/\D/g, '').slice(0, 11);
+      if (!digits) return '';
+      if (digits.length <= 2) return `(${digits}`;
+      if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+      if (digits.length <= 10) {
+        return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+      }
+      return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7, 11)}`;
+    }
+
+    function validateBrazilianPhone(val) {
+      const digits = (val || '').replace(/\D/g, '');
+      if (digits.length < 10) {
+        return { valid: false, message: 'Número incompleto. Digite seu DDD + número de telefone.' };
+      }
+      if (digits.length > 11) {
+        return { valid: false, message: 'Número muito longo. Máximo de 11 dígitos com DDD.' };
+      }
+      const ddd = parseInt(digits.slice(0, 2), 10);
+      if (ddd < 11 || ddd > 99) {
+        return { valid: false, message: 'DDD inválido. Informe um código DDD brasileiro válido.' };
+      }
+      // Rejeita repetições falsas como 11111111111
+      if (/^(\d)\1+$/.test(digits)) {
+        return { valid: false, message: 'Por favor, informe um número de WhatsApp real e ativo.' };
+      }
+      // Se for celular (11 dígitos), deve começar com 9 após o DDD
+      if (digits.length === 11 && digits.charAt(2) !== '9') {
+        return { valid: false, message: 'Números de celular no Brasil devem começar com 9 após o DDD.' };
+      }
+      return { valid: true };
+    }
+
+    function clearPhoneError() {
+      if (telErrorMsg) telErrorMsg.classList.add('hidden');
+      if (telInput) {
+        telInput.classList.remove('border-rose-500', 'ring-2', 'ring-rose-400/30', 'bg-rose-50/20');
+      }
+    }
+
+    function showPhoneError(message) {
+      if (telErrorMsg && telErrorText) {
+        telErrorText.textContent = message || 'Por favor, informe um WhatsApp válido com DDD.';
+        telErrorMsg.classList.remove('hidden');
+      }
+      if (telInput) {
+        telInput.classList.add('border-rose-500', 'ring-2', 'ring-rose-400/30', 'bg-rose-50/20');
+        telInput.focus();
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    telInput.addEventListener('input', (e) => {
+      e.target.value = formatBrazilianPhone(e.target.value);
+      clearPhoneError();
+    });
+
+    telInput.addEventListener('blur', () => {
+      if (telInput.value.trim().length > 0) {
+        const check = validateBrazilianPhone(telInput.value);
+        if (!check.valid) {
+          showPhoneError(check.message);
+        } else {
+          clearPhoneError();
+        }
+      }
+    });
+
+    /* -------------------------------------------------------------------------
+       8. RSVP FORM MULTI-GUEST & GOOGLE SHEETS REAL-TIME INTEGRATION
+       Envia silenciosamente os dados dos convidados direto para a Planilha Google
+       sem exibir nenhuma lista ou número no site (100% sigiloso e automático)
+       ------------------------------------------------------------------------- */
+    const GOOGLE_SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyWvgcN1Sw1EpHJtJDnK1Tfq4nc5LhzEuMlFzW9jFISJjB8noJuYt8dgAIENBR2_BsD/exec';
+
+    async function sendRSVPToGoogleSheets(data) {
+      if (!GOOGLE_SHEETS_WEBHOOK_URL) {
+        console.info('Google Sheets Webhook URL pendente de configuração. Dados prontos para envio:', data);
+        return;
+      }
+      try {
+        await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(data)
+        });
+        console.log('Confirmação RSVP sincronizada com Google Sheets:', data);
+      } catch (err) {
+        console.warn('Erro ao sincronizar com Google Sheets:', err);
+      }
+    }
+
+    const rsvpForm = document.getElementById('rsvp-form');
+    const rsvpSuccessModal = document.getElementById('rsvp-success-modal');
+    const rsvpModalText = document.getElementById('rsvp-modal-text');
+
+    rsvpForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const titularNomeInput = document.getElementById('titular-nome');
+      const titularNome = titularNomeInput.value.trim();
+      const whatsapp = telInput.value.trim();
+      const presenca = 'Confirmado';
+      const restricoes = '';
+      const mensagem = '';
+
+      // Validação do nome
+      if (titularNome.length < 3) {
+        alert('Por favor, informe seu nome completo.');
+        titularNomeInput.focus();
+        return;
+      }
+
+      // Validação estrita do número de WhatsApp
+      const phoneValidation = validateBrazilianPhone(whatsapp);
+      if (!phoneValidation.valid) {
+        showPhoneError(phoneValidation.message);
+        return;
+      }
+      clearPhoneError();
+
+      const acompElements = document.querySelectorAll('#acompanhantes-container > div');
+      const acompanhantes = [];
+      let totalAdultos = 1;
+      let totalCriancas = 0;
+
+      acompElements.forEach(row => {
+        const nome = row.querySelector('.acomp-nome').value.trim();
+        const tipo = row.querySelector('.acomp-tipo').value;
+        if (nome) {
+          acompanhantes.push({ nome, tipo });
+          if (tipo === 'Adulto') totalAdultos++;
+          else totalCriancas++;
+        }
+      });
+
+      // Formatação dos acompanhantes com quebra de linha numerada (evita corte de texto na planilha)
+      const acompanhantesFormatados = acompanhantes.length > 0 
+        ? acompanhantes.map((a, idx) => `${idx + 1}. ${a.nome} (${a.tipo})`).join('\n')
+        : 'Nenhum';
+
+      const rsvpData = {
+        dataHora: new Date().toLocaleString('pt-BR'),
+        titularNome,
+        whatsapp,
+        presenca,
+        acompanhantes: acompanhantesFormatados,
+        totalAdultos,
+        totalCriancas,
+        totalGeral: totalAdultos + totalCriancas,
+        restricoes: restricoes || 'Nenhuma',
+        mensagem: mensagem || ''
+      };
+
+      // Disparo em tempo real em segundo plano para o Google Sheets / Nuvem
+      sendRSVPToGoogleSheets(rsvpData);
+
+      // Backup local silencioso de segurança (sem exibição visual no site)
+      try {
+        const stored = JSON.parse(localStorage.getItem('wedding_rsvps') || '[]');
+        stored.push(rsvpData);
+        localStorage.setItem('wedding_rsvps', JSON.stringify(stored));
+      } catch (err) {}
+
+      // Chuva de confetes solene
+      confetti({
+        particleCount: 120,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#D4AF37', '#EBDDCB', '#ffffff', '#BD9F73']
+      });
+
+      rsvpModalText.innerHTML = `<strong>${titularNome}</strong>, sua presença está confirmada com sucesso! Muito obrigado pelo carinho. Mal podemos esperar para brindar e celebrar esse dia inesquecível ao seu lado!`;
+
+      if (window.lenis) lenis.stop();
+      rsvpSuccessModal.style.opacity = '1';
+      rsvpSuccessModal.style.pointerEvents = 'auto';
+
+      rsvpForm.reset();
+      acompanhantesContainer.innerHTML = '';
+    });
+
+    function closeRsvpSuccessModal() {
+      if (window.lenis) lenis.start();
+      rsvpSuccessModal.style.opacity = '0';
+      rsvpSuccessModal.style.pointerEvents = 'none';
+    }
+
+    /* -------------------------------------------------------------------------
+       9. MURAL UPLOAD HANDLING
+       Fotos enviadas vão direto para a Galeria 3D sem alterar o grid inicial
+       ------------------------------------------------------------------------- */
+    function showMuralToast(message) {
+      let toast = document.getElementById('mural-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'mural-toast';
+        toast.className = 'fixed bottom-8 left-1/2 -translate-x-1/2 z-50 px-6 py-3.5 rounded-full bg-charcoal/95 text-champagne-100 border border-gold-400/80 shadow-2xl backdrop-blur-md text-xs font-semibold tracking-wider flex items-center gap-2 transition-all duration-300 pointer-events-none opacity-0 translate-y-4';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `<i data-lucide="sparkles" class="w-4 h-4 text-gold-400"></i> <span>${message}</span>`;
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+      toast.style.opacity = '1';
+      toast.style.transform = 'translate(-50%, 0)';
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translate(-50%, 16px)';
+      }, 3500);
+    }
+
+    function handleMuralUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const base64Img = e.target.result;
+
+        // Adiciona a foto instantaneamente à fila da Galeria 3D (sem aparecer no grid inicial)
+        if (typeof addImageToGallery3D === 'function') {
+          addImageToGallery3D(base64Img, 'Foto enviada pelos convidados');
+        }
+
+        confetti({
+          particleCount: 85,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#D4AF37', '#ffffff', '#BE9F73']
+        });
+
+        showMuralToast('Foto adicionada com sucesso à Galeria 3D!');
+      };
+      reader.readAsDataURL(file);
+      event.target.value = '';
+    }
+
+    /* -------------------------------------------------------------------------
+       10. CALENDAR ICS GENERATOR
+       ------------------------------------------------------------------------- */
+    function downloadICS() {
+      const icsContent = 
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Cris e Enock//Casamento//PT
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+SUMMARY:Casamento de Cris & Enock
+DESCRIPTION:Celebração do casamento solene de Cris e Enock. Traje Livre Escolha (Sugerido: Esporte Fino). Esperamos você!
+LOCATION:R. Roberto Ziemann, 5711 - Três Rios do Norte, Jaraguá do Sul - SC
+DTSTART:20270109T220000Z
+DTEND:20270110T050000Z
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR`;
+
+      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.setAttribute('download', 'Casamento_Cris_e_Enock.ics');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+
+
+    /* -------------------------------------------------------------------------
+       12. VIDEO VISIBILITY & RESOURCE MANAGEMENT OBSERVERS
+       Evita que múltiplos vídeos de 10-16MB rodem em segundo plano consumindo GPU
+       ------------------------------------------------------------------------- */
+    const heroSectionEl = document.getElementById('hero-gate-section');
+    if (heroSectionEl && heroVideo) {
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting && !heroVideo.paused) {
+            try { heroVideo.pause(); } catch(e) {}
+          }
+        });
+      }, { threshold: 0.05 });
+      heroObserver.observe(heroSectionEl);
+    }
+
+    const rsvpSectionEl = document.getElementById('rsvp-section');
+    const rsvpDesktopVideo = document.getElementById('rsvp-bg-video-desktop');
+    const rsvpMobileVideo = document.getElementById('rsvp-bg-video-mobile');
+    if (rsvpSectionEl) {
+      const rsvpObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) {
+            // Fora de tela: pausa IMEDIATAMENTE ambos os vídeos para zerar uso de GPU
+            if (rsvpDesktopVideo && !rsvpDesktopVideo.paused) {
+              try { rsvpDesktopVideo.pause(); } catch(e) {}
+            }
+            if (rsvpMobileVideo && !rsvpMobileVideo.paused) {
+              try { rsvpMobileVideo.pause(); } catch(e) {}
+            }
+          } else {
+            // Dentro de tela: toca apenas o vídeo nativo do dispositivo
+            const isDesktop = window.innerWidth >= 768;
+            const targetVideo = isDesktop ? rsvpDesktopVideo : rsvpMobileVideo;
+            const otherVideo = isDesktop ? rsvpMobileVideo : rsvpDesktopVideo;
+
+            if (otherVideo && !otherVideo.paused) {
+              try { otherVideo.pause(); } catch(e) {}
+            }
+            if (targetVideo && targetVideo.paused) {
+              const playPromise = targetVideo.play();
+              if (playPromise !== undefined) {
+                playPromise.catch(() => {});
+              }
+            }
+          }
+        });
+      }, { rootMargin: '50px 0px' });
+      rsvpObserver.observe(rsvpSectionEl);
+    }
+
+    
+    /* -------------------------------------------------------------------------
+       12. BOTANICAL BACKGROUND BLOOM & REVEAL (5ª DOBRA - ULTRA PERFORMÁTICO)
+       Revelação cinematográfica das flores com aceleração por hardware da GPU,
+       eliminando 100% dos gargalos de CPU/re-paint e garantindo 60/120fps fluidos.
+       ------------------------------------------------------------------------- */
+    function initBotanicalDrawing() {
+      const section = document.getElementById('detalhes-section');
+      const botanicalImg = document.getElementById('botanical-art-image');
+      if (!section || !botanicalImg) return;
+
+      // Estado inicial limpo
+      gsap.set(botanicalImg, { opacity: 0, scale: 1.03 });
+
+      let hasBloomed = false;
+
+      function bloomBotanicalsSlowly() {
+        if (hasBloomed) return;
+        hasBloomed = true;
+
+        const tl = gsap.timeline();
+
+        // 1. Revelação fluida e orgânica acelerada 100% na GPU (transform + opacity)
+        tl.to(botanicalImg, {
+          opacity: 0.82,
+          scale: 1,
+          duration: 1.8,
+          ease: 'power2.out',
+          onComplete: () => {
+            // Desativa transform e will-change para zerar consumo de VRAM e manter textura estática
+            botanicalImg.style.willChange = 'auto';
+          }
+        });
+
+        // 2. Apresentação elegante e suave dos dois cards com leve stagger
+        const cards = section.querySelectorAll('.glass-card');
+        if (cards && cards.length > 0) {
+          tl.from(cards, {
+            y: 20,
+            opacity: 0.8,
+            duration: 1.0,
+            stagger: 0.15,
+            ease: 'power2.out'
+          }, 0.2);
+        }
+      }
+
+      // Gatilho GSAP ScrollTrigger sincronizado com Lenis
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top 80%',
+          once: true,
+          onEnter: () => bloomBotanicalsSlowly()
+        });
+      }
+
+      // Fallback robusto via IntersectionObserver
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              bloomBotanicalsSlowly();
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0.1 });
+        observer.observe(section);
+      } else {
+        setTimeout(bloomBotanicalsSlowly, 800);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initBotanicalDrawing);
+    } else {
+      initBotanicalDrawing();
+    }
+
+/* -------------------------------------------------------------------------
+       13. REFRESH & SCROLL RESET ENFORCEMENT
+       Garante que ao recarregar a página (F5), a tela inicie no topo e o ScrollTrigger
+       calcule os gatilhos a partir do ponto zero.
+       ------------------------------------------------------------------------- */
+    window.addEventListener('load', () => {
+      window.scrollTo(0, 0);
+      if (window.lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      }
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh(true);
+      }
+    });
+
+    /* =========================================================================
+       14. GALERIA 3D INFINITA DOS CONVIDADOS (SEQUÊNCIA LINEAR CONTÍNUA)
+       As fotos passam estritamente em sequência (1, 2, 3... N) sem repetições
+       simultâneas ou fora de hora. Somente após a última foto é que a sequência
+       recomeça do início, atualizando em tempo real com fotos dos convidados.
+       ========================================================================= */
+    const defaultWeddingImages = [
+      { src: 'assets/images/imgherofinal.png', alt: 'Cris & Enock — Noivos' },
+      { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80', alt: 'Mesa da Família' },
+      { src: 'assets/images/imgheroinicio.png', alt: 'Areias Douradas' },
+      { src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80', alt: 'Amigos Queridos' },
+      { src: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=85', alt: 'Olhares que se Cruzam' },
+      { src: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1200&q=85', alt: 'A Promessa' },
+      { src: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1200&q=85', alt: 'Caminho a Dois' },
+      { src: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=85', alt: 'Sorrisos Compartilhados' },
+      { src: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=1200&q=85', alt: 'O Abraço Seguro' },
+      { src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1200&q=85', alt: 'Celebrando com Amor' },
+      { src: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1200&q=85', alt: 'Brinde dos Padrinhos' },
+      { src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=85', alt: 'Flores & Luzes' }
+    ];
+
+    let gallery3DImages = [...defaultWeddingImages];
+
+    // Carrega memórias e fotos postadas pelos convidados salvas no LocalStorage
+    function loadStoredGuestPhotos() {
+      // 1. Limpa a imagem de teste enviada pelo usuário
+      try {
+        if (!localStorage.getItem('wedding_photos_reset_v3')) {
+          localStorage.removeItem('wedding_guest_photos');
+          localStorage.setItem('wedding_photos_reset_v3', 'true');
+        }
+      } catch(e) {}
+
+      // 2. Carrega fotos salvas exclusivamente para a Galeria 3D (SEM injetar no grid inicial)
+      try {
+        const saved = JSON.parse(localStorage.getItem('wedding_guest_photos') || '[]');
+        if (Array.isArray(saved) && saved.length > 0) {
+          saved.forEach((item) => {
+            if (item && item.src && !gallery3DImages.some(img => img.src === item.src)) {
+              gallery3DImages.push(item);
+            }
+          });
+        }
+      } catch(err) {
+        console.warn('LocalStorage Mural info:', err);
+      }
+    }
+    loadStoredGuestPhotos();
+
+    const gallery3DModal = document.getElementById('gallery-3d-modal');
+    const gallery3DCanvas = document.getElementById('gallery-3d-canvas');
+    let gallery3DInitialized = false;
+    let gallery3DActive = false;
+    let gallery3DAnimId = null;
+
+    let g3Renderer = null;
+    let g3Scene = null;
+    let g3Camera = null;
+    let g3Clock = null;
+    let g3PlaneGeo = null;
+
+    let g3Planes = [];
+    let g3Materials = [];
+    const g3LoadedTextures = {};
+
+    let g3ScrollVelocity = 0;
+    const g3Speed = 1.2;
+    let g3AutoPlay = true;
+    let g3LastInteraction = Date.now();
+
+    const G3_DEPTH_RANGE = 46;
+
+    // Controle estrito de sequência linear
+    let g3HeadSeq = 0; // foto da frente (mais próxima da câmera)
+    let g3TailSeq = 0; // foto do fundo (mais distante)
+
+    const g3FadeSettings = {
+      fadeIn: { start: 0.03, end: 0.18 },
+      fadeOut: { start: 0.65, end: 0.90 }
+    };
+    const g3BlurSettings = {
+      blurIn: { start: 0.0, end: 0.10 },
+      blurOut: { start: 0.65, end: 0.90 },
+      maxBlur: 4.5
+    };
+
+    const g3Raycaster = typeof THREE !== 'undefined' ? new THREE.Raycaster() : null;
+    const g3Mouse = typeof THREE !== 'undefined' ? new THREE.Vector2(-10, -10) : null;
+    let hoveredPlaneIndex = -1;
+
+    function isMobileView() {
+      return window.innerWidth < 768 || (window.innerWidth / window.innerHeight < 1.05);
+    }
+
+    function getActivePlaneCount() {
+      const maxSlots = isMobileView() ? 6 : 8;
+      // Garante que NUNCA haja mais planos do que fotos na lista, eliminando repetição simultânea
+      return Math.max(1, Math.min(maxSlots, gallery3DImages.length));
+    }
+
+    function createGalleryClothMaterial() {
+      return new THREE.ShaderMaterial({
+        transparent: true,
+        depthWrite: false,
+        uniforms: {
+          map: { value: null },
+          opacity: { value: 1.0 },
+          blurAmount: { value: 0.0 },
+          scrollForce: { value: 0.0 },
+          time: { value: 0.0 },
+          isHovered: { value: 0.0 }
+        },
+        vertexShader: `
+          uniform float scrollForce;
+          uniform float time;
+          uniform float isHovered;
+          varying vec2 vUv;
+          varying vec3 vNormal;
+          
+          void main() {
+            vUv = uv;
+            vNormal = normal;
+            vec3 pos = position;
+            
+            float curveIntensity = scrollForce * 0.22;
+            float distanceFromCenter = length(pos.xy);
+            float curve = distanceFromCenter * distanceFromCenter * curveIntensity;
+            
+            float ripple1 = sin(pos.x * 2.0 + scrollForce * 3.0) * 0.018;
+            float ripple2 = sin(pos.y * 2.5 + scrollForce * 2.0) * 0.012;
+            float clothEffect = (ripple1 + ripple2) * abs(curveIntensity) * 1.8;
+            
+            float flagWave = 0.0;
+            if (isHovered > 0.5) {
+              float wavePhase = pos.x * 3.0 + time * 6.5;
+              float waveAmplitude = sin(wavePhase) * 0.08;
+              float dampening = smoothstep(-0.5, 0.5, pos.x);
+              flagWave = waveAmplitude * dampening;
+              float secondaryWave = sin(pos.x * 5.0 + time * 10.0) * 0.02 * dampening;
+              flagWave += secondaryWave;
+            }
+            
+            pos.z -= (curve + clothEffect + flagWave);
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+          }
+        `,
+        fragmentShader: `
+          precision highp float;
+          uniform sampler2D map;
+          uniform float opacity;
+          uniform float blurAmount;
+          uniform float scrollForce;
+          varying vec2 vUv;
+          varying vec3 vNormal;
+          
+          void main() {
+            vec4 color = texture2D(map, vUv);
+            
+            if (blurAmount > 0.0) {
+              vec2 texelSize = vec2(0.0016, 0.0016);
+              vec4 blurred = vec4(0.0);
+              float total = 0.0;
+              
+              for (float x = -2.0; x <= 2.0; x += 1.0) {
+                for (float y = -2.0; y <= 2.0; y += 1.0) {
+                  vec2 offset = vec2(x, y) * texelSize * blurAmount;
+                  float weight = 1.0 / (1.0 + length(vec2(x, y)));
+                  blurred += texture2D(map, vUv + offset) * weight;
+                  total += weight;
+                }
+              }
+              color = blurred / total;
+            }
+            
+            float curveHighlight = abs(scrollForce) * 0.04;
+            color.rgb += vec3(curveHighlight * 0.07);
+            
+            gl_FragColor = vec4(color.rgb, color.a * opacity);
+          }
+        `
+      });
+    }
+
+    function getG3SpatialPositions(count) {
+      const mobile = isMobileView();
+      const maxHoriz = mobile ? 0.65 : 6.0;
+      const maxVert = mobile ? 2.4 : 4.5;
+      const positions = [];
+
+      for (let i = 0; i < count; i++) {
+        const horizontalAngle = (i * 2.618) % (Math.PI * 2);
+        const verticalAngle = (i * 1.618 + Math.PI / 3) % (Math.PI * 2);
+        const horizontalRadius = (i % 3) * 1.1;
+        const verticalRadius = ((i + 1) % 4) * 0.85;
+
+        const x = (Math.sin(horizontalAngle) * horizontalRadius * maxHoriz) / (mobile ? 2.2 : 2.8);
+        const y = (Math.cos(verticalAngle) * verticalRadius * maxVert) / (mobile ? 2.5 : 3.2);
+
+        positions.push({ x, y });
+      }
+      return positions;
+    }
+
+    function getOrLoadTexture(url, onReady) {
+      if (g3LoadedTextures[url]) {
+        if (onReady) onReady(g3LoadedTextures[url]);
+        return g3LoadedTextures[url];
+      }
+      if (typeof THREE === 'undefined') return null;
+      const loader = new THREE.TextureLoader();
+      loader.setCrossOrigin('anonymous');
+      const tex = loader.load(
+        url,
+        (loadedTex) => {
+          loadedTex.generateMipmaps = true;
+          loadedTex.minFilter = THREE.LinearMipmapLinearFilter;
+          if (onReady) onReady(loadedTex);
+        },
+        undefined,
+        () => {
+          console.warn('Textura em fallback:', url);
+        }
+      );
+      g3LoadedTextures[url] = tex;
+      return tex;
+    }
+
+    function updatePlaneScale(plane, texture) {
+      if (!plane.mesh || !texture || !texture.image || !texture.image.height) return;
+      const imgAspect = texture.image.width / texture.image.height;
+      const mobile = isMobileView();
+
+      if (mobile) {
+        if (imgAspect >= 1.0) {
+          const w = 2.15;
+          const h = w / imgAspect;
+          plane.mesh.scale.set(w, h, 1);
+        } else {
+          const h = 2.35;
+          const w = h * imgAspect;
+          plane.mesh.scale.set(w, h, 1);
+        }
+      } else {
+        const baseScale = 2.05;
+        if (imgAspect >= 1.0) {
+          plane.mesh.scale.set(baseScale * imgAspect, baseScale, 1);
+        } else {
+          plane.mesh.scale.set(baseScale, baseScale / imgAspect, 1);
+        }
+      }
+    }
+
+    function updatePlaneMesh(plane) {
+      if (!g3Scene) return;
+      const totalImages = gallery3DImages.length;
+      if (totalImages === 0) return;
+
+      const normalizedIdx = ((plane.imageIndex % totalImages) + totalImages) % totalImages;
+      const imgItem = gallery3DImages[normalizedIdx];
+      if (!imgItem) return;
+
+      const texture = getOrLoadTexture(imgItem.src, (tex) => {
+        plane.material.uniforms.map.value = tex;
+        updatePlaneScale(plane, tex);
+      });
+
+      plane.material.uniforms.map.value = texture;
+      if (texture && texture.image && texture.image.width) {
+        updatePlaneScale(plane, texture);
+      }
+    }
+
+    function buildPlanesSequence(startSeqIndex) {
+      if (!g3Scene) return;
+
+      // Limpa planos anteriores
+      g3Planes.forEach(p => {
+        if (p.mesh) g3Scene.remove(p.mesh);
+      });
+      g3Planes = [];
+      g3Materials = [];
+
+      const planeCount = getActivePlaneCount();
+      const spatialPositions = getG3SpatialPositions(planeCount);
+      const totalImages = gallery3DImages.length;
+      const stepZ = G3_DEPTH_RANGE / planeCount;
+
+      g3HeadSeq = startSeqIndex;
+      g3TailSeq = startSeqIndex + planeCount - 1;
+
+      for (let i = 0; i < planeCount; i++) {
+        const mat = createGalleryClothMaterial();
+        g3Materials.push(mat);
+
+        const mesh = new THREE.Mesh(g3PlaneGeo, mat);
+        mesh.userData = { planeIndex: i };
+
+        // O plano 0 inicia na frente (maior Z), e cada plano seguinte fica um degrau mais ao fundo
+        const planeZ = (G3_DEPTH_RANGE - 0.5) - (i * stepZ);
+        const imageIdx = (startSeqIndex + i) % totalImages;
+
+        const plane = {
+          index: i,
+          z: planeZ,
+          imageIndex: imageIdx,
+          x: spatialPositions[i].x,
+          y: spatialPositions[i].y,
+          mesh: mesh,
+          material: mat
+        };
+
+        mesh.position.set(plane.x, plane.y, plane.z - G3_DEPTH_RANGE / 2);
+        g3Scene.add(mesh);
+        g3Planes.push(plane);
+
+        updatePlaneMesh(plane);
+      }
+    }
+
+    function initGallery3D(initialStartIndex = 0) {
+      if (typeof THREE === 'undefined') return;
+
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const mobile = isMobileView();
+
+      if (!gallery3DInitialized) {
+        g3Renderer = new THREE.WebGLRenderer({
+          canvas: gallery3DCanvas,
+          antialias: true,
+          alpha: true,
+          powerPreference: 'high-performance'
+        });
+        g3Renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        g3Renderer.setSize(width, height);
+
+        g3Scene = new THREE.Scene();
+        g3Camera = new THREE.PerspectiveCamera(mobile ? 58 : 52, width / height, 0.1, 100);
+        g3Camera.position.set(0, 0, 0);
+
+        g3Clock = new THREE.Clock();
+        g3PlaneGeo = new THREE.PlaneGeometry(1, 1, 32, 32);
+
+        setupGallery3DInteractions();
+        gallery3DInitialized = true;
+      }
+
+      buildPlanesSequence(initialStartIndex);
+    }
+
+    function setupGallery3DInteractions() {
+      // 1. Roda do Mouse
+      gallery3DCanvas.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        g3ScrollVelocity += e.deltaY * 0.0075 * g3Speed;
+        g3AutoPlay = false;
+        g3LastInteraction = Date.now();
+      }, { passive: false });
+
+      // 2. Teclado
+      window.addEventListener('keydown', (e) => {
+        if (!gallery3DActive) return;
+        const isLightboxOpen = lightboxModal && (lightboxModal.style.opacity === '1' || lightboxModal.style.pointerEvents === 'auto');
+        if (isLightboxOpen) return; // Permite que o teclado navegue o lightbox
+
+        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+          g3ScrollVelocity -= 2.4 * g3Speed;
+          g3AutoPlay = false;
+          g3LastInteraction = Date.now();
+        } else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+          g3ScrollVelocity += 2.4 * g3Speed;
+          g3AutoPlay = false;
+          g3LastInteraction = Date.now();
+        } else if (e.key === 'Escape') {
+          closeGallery3D();
+        }
+      });
+
+      // 3. Pointer Events (Touch unificado e Drag no Desktop)
+      let isPointerActive = false;
+      let startY = 0;
+      let startX = 0;
+      let lastY = 0;
+      let totalDistance = 0;
+
+      const handlePointerDown = (clientX, clientY) => {
+        isPointerActive = true;
+        startY = clientY;
+        startX = clientX;
+        lastY = clientY;
+        totalDistance = 0;
+        g3AutoPlay = false;
+        g3LastInteraction = Date.now();
+      };
+
+      const handlePointerMove = (clientX, clientY) => {
+        if (!gallery3DActive) return;
+
+        if (g3Mouse) {
+          g3Mouse.x = (clientX / window.innerWidth) * 2 - 1;
+          g3Mouse.y = -(clientY / window.innerHeight) * 2 + 1;
+        }
+
+        if (isPointerActive) {
+          const deltaY = lastY - clientY;
+          const mobile = isMobileView();
+          g3ScrollVelocity += deltaY * (mobile ? 0.032 : 0.02) * g3Speed;
+          totalDistance += Math.abs(deltaY) + Math.abs(startX - clientX);
+          lastY = clientY;
+          g3LastInteraction = Date.now();
+        }
+      };
+
+      const handlePointerUp = () => {
+        if (isPointerActive && totalDistance < 8) {
+          if (hoveredPlaneIndex >= 0 && g3Planes[hoveredPlaneIndex]) {
+            const plane = g3Planes[hoveredPlaneIndex];
+            const total = gallery3DImages.length;
+            const normIdx = ((plane.imageIndex % total) + total) % total;
+            const imgItem = gallery3DImages[normIdx];
+            if (imgItem) {
+              openLightbox(imgItem.src, imgItem.alt || 'Momento do Casamento');
+            }
+          }
+        }
+        isPointerActive = false;
+      };
+
+      gallery3DCanvas.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        handlePointerDown(e.clientX, e.clientY);
+      }, { passive: false });
+
+      window.addEventListener('pointermove', (e) => {
+        handlePointerMove(e.clientX, e.clientY);
+      });
+
+      window.addEventListener('pointerup', handlePointerUp);
+      window.addEventListener('pointercancel', () => { isPointerActive = false; });
+
+      // Resize
+      const handleResize = () => {
+        if (!g3Renderer || !g3Camera) return;
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        const mobile = isMobileView();
+
+        g3Camera.fov = mobile ? 58 : 52;
+        g3Camera.aspect = w / h;
+        g3Camera.updateProjectionMatrix();
+        g3Renderer.setSize(w, h);
+
+        const newPos = getG3SpatialPositions(g3Planes.length);
+        g3Planes.forEach((p, idx) => {
+          if (newPos[idx]) {
+            p.x = newPos[idx].x;
+            p.y = newPos[idx].y;
+            if (p.mesh) {
+              p.mesh.position.x = p.x;
+              p.mesh.position.y = p.y;
+              if (p.material.uniforms.map.value) {
+                updatePlaneScale(p, p.material.uniforms.map.value);
+              }
+            }
+          }
+        });
+      };
+
+      window.addEventListener('resize', handleResize);
+      window.addEventListener('orientationchange', () => {
+        setTimeout(handleResize, 100);
+      });
+    }
+
+    function animateGallery3D() {
+      if (!gallery3DActive) return;
+
+      gallery3DAnimId = requestAnimationFrame(animateGallery3D);
+
+      const delta = Math.min(g3Clock.getDelta(), 0.1);
+      const time = g3Clock.getElapsedTime();
+
+      // AutoPlay contínuo e suave
+      if (g3AutoPlay || (Date.now() - g3LastInteraction > 2200)) {
+        g3ScrollVelocity += 0.35 * delta;
+      }
+
+      g3ScrollVelocity *= 0.94;
+
+      // Raycaster de hover (Desktop)
+      let currentHoverIndex = -1;
+      if (g3Raycaster && g3Camera && g3Mouse) {
+        g3Raycaster.setFromCamera(g3Mouse, g3Camera);
+        const intersects = g3Raycaster.intersectObjects(g3Scene.children);
+        if (intersects.length > 0) {
+          currentHoverIndex = intersects[0].object.userData.planeIndex;
+        }
+      }
+      hoveredPlaneIndex = currentHoverIndex;
+      gallery3DCanvas.style.cursor = currentHoverIndex >= 0 ? 'pointer' : 'grab';
+
+      // Atualiza uniforms dos materiais
+      g3Planes.forEach((plane, i) => {
+        const mat = plane.material;
+        if (mat && mat.uniforms) {
+          mat.uniforms.time.value = time;
+          mat.uniforms.scrollForce.value = g3ScrollVelocity;
+          mat.uniforms.isHovered.value = (i === currentHoverIndex) ? 1.0 : 0.0;
+        }
+      });
+
+      // Movimentação Z com Fila Sequencial Rigorosa
+      const totalRange = G3_DEPTH_RANGE;
+      const halfRange = totalRange / 2;
+      const totalImages = gallery3DImages.length;
+
+      g3Planes.forEach((plane) => {
+        let newZ = plane.z + g3ScrollVelocity * delta * 12;
+
+        // O plano passou da tela para a frente: ele deve ir lá para o FUNDO
+        // e carregar a PRÓXIMA foto da sequência linear (g3TailSeq + 1)
+        if (newZ >= totalRange) {
+          newZ -= totalRange;
+          g3TailSeq++;
+          g3HeadSeq++;
+          plane.imageIndex = g3TailSeq % totalImages;
+          updatePlaneMesh(plane);
+        }
+        // O plano foi empurrado para trás do fundo: volta para a FRENTE
+        // e carrega a foto anterior da sequência (g3HeadSeq - 1)
+        else if (newZ < 0) {
+          newZ += totalRange;
+          g3HeadSeq--;
+          g3TailSeq--;
+          plane.imageIndex = ((g3HeadSeq % totalImages) + totalImages) % totalImages;
+          updatePlaneMesh(plane);
+        }
+
+        plane.z = newZ;
+        const worldZ = plane.z - halfRange;
+        plane.mesh.position.z = worldZ;
+
+        // Fade e Blur no espaço Z
+        const normalizedPos = plane.z / totalRange;
+        let opacity = 1.0;
+        if (normalizedPos >= g3FadeSettings.fadeIn.start && normalizedPos <= g3FadeSettings.fadeIn.end) {
+          opacity = (normalizedPos - g3FadeSettings.fadeIn.start) / (g3FadeSettings.fadeIn.end - g3FadeSettings.fadeIn.start);
+        } else if (normalizedPos < g3FadeSettings.fadeIn.start) {
+          opacity = 0.0;
+        } else if (normalizedPos >= g3FadeSettings.fadeOut.start && normalizedPos <= g3FadeSettings.fadeOut.end) {
+          opacity = 1.0 - (normalizedPos - g3FadeSettings.fadeOut.start) / (g3FadeSettings.fadeOut.end - g3FadeSettings.fadeOut.start);
+        } else if (normalizedPos > g3FadeSettings.fadeOut.end) {
+          opacity = 0.0;
+        }
+        opacity = Math.max(0.0, Math.min(1.0, opacity));
+
+        let blur = 0.0;
+        if (normalizedPos >= g3BlurSettings.blurIn.start && normalizedPos <= g3BlurSettings.blurIn.end) {
+          const progress = (normalizedPos - g3BlurSettings.blurIn.start) / (g3BlurSettings.blurIn.end - g3BlurSettings.blurIn.start);
+          blur = g3BlurSettings.maxBlur * (1.0 - progress);
+        } else if (normalizedPos < g3BlurSettings.blurIn.start) {
+          blur = g3BlurSettings.maxBlur;
+        } else if (normalizedPos >= g3BlurSettings.blurOut.start && normalizedPos <= g3BlurSettings.blurOut.end) {
+          const progress = (normalizedPos - g3BlurSettings.blurOut.start) / (g3BlurSettings.blurOut.end - g3BlurSettings.blurOut.start);
+          blur = g3BlurSettings.maxBlur * progress;
+        } else if (normalizedPos > g3BlurSettings.blurOut.end) {
+          blur = g3BlurSettings.maxBlur;
+        }
+        blur = Math.max(0.0, Math.min(g3BlurSettings.maxBlur, blur));
+
+        plane.material.uniforms.opacity.value = opacity;
+        plane.material.uniforms.blurAmount.value = blur;
+      });
+
+      g3Renderer.render(g3Scene, g3Camera);
+    }
+
+    function openGallery3D(initialIndex = 0) {
+      if (window.lenis) lenis.stop();
+
+      const modal = document.getElementById('gallery-3d-modal');
+      modal.style.display = 'block';
+      setTimeout(() => {
+        modal.style.opacity = '1';
+        modal.style.pointerEvents = 'auto';
+      }, 10);
+
+      initGallery3D(initialIndex);
+      gallery3DActive = true;
+      g3LastInteraction = Date.now();
+      g3ScrollVelocity = 1.0;
+
+      if (g3Renderer && g3Camera) {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        const mobile = isMobileView();
+        g3Camera.fov = mobile ? 58 : 52;
+        g3Camera.aspect = w / h;
+        g3Camera.updateProjectionMatrix();
+        g3Renderer.setSize(w, h);
+      }
+
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+      if (!gallery3DAnimId) {
+        if (g3Clock) g3Clock.start();
+        animateGallery3D();
+      }
+    }
+
+    function closeGallery3D() {
+      const modal = document.getElementById('gallery-3d-modal');
+      modal.style.opacity = '0';
+      modal.style.pointerEvents = 'none';
+
+      setTimeout(() => {
+        modal.style.display = 'none';
+        gallery3DActive = false;
+        if (gallery3DAnimId) {
+          cancelAnimationFrame(gallery3DAnimId);
+          gallery3DAnimId = null;
+        }
+        if (window.lenis) lenis.start();
+      }, 500);
+    }
+
+    // Adiciona foto enviada pelos convidados à sequência contínua e salva no LocalStorage
+    function addImageToGallery3D(src, alt) {
+      const newPhoto = { src, alt: alt || 'Foto enviada pelos convidados' };
+      gallery3DImages.push(newPhoto);
+
+      try {
+        const saved = JSON.parse(localStorage.getItem('wedding_guest_photos') || '[]');
+        if (!saved.some(p => p.src === src)) {
+          saved.push(newPhoto);
+          localStorage.setItem('wedding_guest_photos', JSON.stringify(saved));
+        }
+      } catch(err) {}
+
+      // Se a galeria estiver aberta e os slots puderem ser ampliados, reconstrói suavemente
+      if (gallery3DActive && g3Scene && g3Planes.length < (isMobileView() ? 6 : 8)) {
+        buildPlanesSequence(g3HeadSeq);
+      }
+    }
+
+    /* -------------------------------------------------------------------------
+       15. FAQ ACCORDION INTERATIVO (8ª DOBRA)
+       Abertura e fechamento suaves com recálculo automático de altura no Lenis/GSAP
+       ------------------------------------------------------------------------- */
+    function toggleFaqItem(button) {
+      const item = button.closest('.faq-item');
+      if (!item) return;
+      const answer = item.querySelector('.faq-answer');
+      const isAlreadyActive = item.classList.contains('active');
+
+      // Fecha todos os outros itens para um comportamento sanfona limpo e organizado
+      document.querySelectorAll('.faq-item').forEach((otherItem) => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+          const otherAns = otherItem.querySelector('.faq-answer');
+          if (otherAns) otherAns.style.maxHeight = null;
+        }
+      });
+
+      if (isAlreadyActive) {
+        item.classList.remove('active');
+        if (answer) answer.style.maxHeight = null;
+      } else {
+        item.classList.add('active');
+        if (answer) answer.style.maxHeight = (answer.scrollHeight + 30) + 'px';
+      }
+
+      // Recalcula alturas no Lenis e ScrollTrigger para rolagem contínua perfeita
+      setTimeout(() => {
+        if (typeof ScrollTrigger !== 'undefined') {
+          ScrollTrigger.refresh();
+        }
+      }, 350);
+    }
+    window.toggleFaqItem = toggleFaqItem;
+  </script>
+</body>
+</html>
