@@ -30,13 +30,18 @@ cris&enock/
 ├── assets/
 │   ├── audio/                      # Trilha sonora do casamento (.mp3, .m4a, .mp4)
 │   ├── envelope-frames/            # 200 quadros para a animação do envelope interativo
-│   ├── images/                     # Fotos dos noivos, convite 8K e fundo botânico
+│   ├── images/                     # Fotos dos noivos, convite 8K, QR Codes e fundo botânico
+│   │   ├── qrcode-mural.png        # QR Code Ultra HD (300 DPI) para impressão
+│   │   ├── qrcode-mural.svg        # QR Code Vetorial escalável sem perda de resolução
+│   │   └── qrcode-mural-monograma.png # QR Code com iniciais C & E no centro
 │   └── videos/                     # Vídeos do Hero inicial e fundo do formulário RSVP
 ├── docs/
 │   └── especificacao_projeto.md    # Especificação detalhada da arquitetura e design
 ├── scripts/
+│   ├── generate_qrcode.py          # Script gerador dos QR Codes oficiais com 30% tolerância
 │   └── google_sheets_script.js     # Script oficial do Google Apps Script (RSVP / Webhook)
 ├── .gitignore                      # Arquivos e diretórios ignorados pelo Git
+├── display-mesa-mural.html         # Plaquinha de mesa oficial para impressão (10x15cm, tenda, A4)
 ├── index.html                      # Aplicação web completa e estruturada
 └── README.md                       # Documentação oficial do repositório
 ```

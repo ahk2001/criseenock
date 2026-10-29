@@ -20,3 +20,8 @@ scratch/
 
 # Node / Dependências
 node_modules/
+
+# Python Virtual Environments & Cache
+.venv/
+__pycache__/
+*.pyc

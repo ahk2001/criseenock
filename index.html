@@ -6,12 +6,15 @@
   <title>Cris & Enock — Nosso Casamento</title>
   <meta name="description" content="Celebre o amor de Cris & Enock no dia 09 de Janeiro de 2027 em Jaraguá do Sul, SC. Convite interativo e confirmação de presença.">
 
-  <!-- Prevenção de restauração de rolagem: Garante que qualquer recarregamento (F5) inicie no topo (0,0) -->
+  <!-- Prevenção de restauração de rolagem: Garante que qualquer recarregamento (F5) inicie no topo (0,0), mas preserva acessos diretos com âncora (como o QR Code de mesa #mural-section) -->
   <script>
     if (typeof window !== 'undefined' && window.history && 'scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
-    window.scrollTo(0, 0);
+    const isMuralDirectLink = (window.location.hash && /mural|fotos/i.test(window.location.hash)) || /mural/i.test(window.location.search);
+    if (!isMuralDirectLink) {
+      window.scrollTo(0, 0);
+    }
   </script>
 
   <!-- Google Fonts -->
@@ -1220,7 +1223,7 @@
         </p>
       </div>
 
-      <!-- Botões de Ação do Mural: Explorar Galeria 3D e Upload de Fotos -->
+      <!-- Botões de Ação do Mural: Explorar Galeria 3D, Upload de Fotos e Plaquinha de Mesa QR Code -->
       <div class="flex flex-wrap items-center justify-center gap-4 mb-12">
         <button onclick="openGallery3D(0)" class="px-8 py-4 rounded-full bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 hover:from-gold-500 hover:to-gold-400 text-charcoal font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-xl flex items-center gap-3 cursor-pointer hover:scale-105 border border-gold-300/80 active:scale-95 group">
           <i data-lucide="sparkles" class="w-4 h-4 text-charcoal group-hover:rotate-12 transition-transform"></i>
@@ -1231,7 +1234,12 @@
           <i data-lucide="upload-cloud" class="w-4 h-4 text-gold-400"></i>
           <span>Subir Fotos da Festa</span>
         </label>
-        <input type="file" id="mural-file-input" accept="image/*" class="hidden" onchange="handleMuralUpload(event)">
+        <input type="file" id="mural-file-input" accept="image/*" multiple class="hidden" onchange="handleMuralUpload(event)">
+
+        <a href="display-mesa-mural.html" target="_blank" rel="noopener noreferrer" class="px-6 py-4 rounded-full bg-white/80 hover:bg-white text-charcoal hover:text-gold-700 font-semibold text-xs tracking-widest uppercase transition-all duration-300 shadow-lg flex items-center gap-2.5 cursor-pointer hover:scale-105 border border-gold-400/50 active:scale-95">
+          <i data-lucide="qr-code" class="w-4 h-4 text-gold-600"></i>
+          <span>Plaquinha para Mesas (QR Code)</span>
+        </a>
       </div>
 
       <!-- Live Mural Grid: Clicar em qualquer foto abre a galeria 3D em tela cheia -->
@@ -1760,6 +1768,11 @@
       }
     }
 
+    // Se o convidado chegou escaneando o QR Code da mesa (#mural-section), pula o vídeo de abertura imediatamente
+    if (isMuralDirect) {
+      transitionVideoToHero();
+    }
+
     if (heroVideo) {
       // Tenta acionar a trilha sonora em perfeita sincronia com o play do vídeo
       heroVideo.addEventListener('play', () => {
@@ -1910,14 +1923,17 @@
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // Previne que o ScrollTrigger ou o navegador restaurem posição de rolagem no F5
+    // Previne que o ScrollTrigger ou o navegador restaurem posição de rolagem no F5, preservando âncoras como #mural-section
     if (typeof window !== 'undefined' && window.history && 'scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
     if (typeof ScrollTrigger !== 'undefined' && ScrollTrigger.clearScrollMemory) {
       ScrollTrigger.clearScrollMemory('manual');
     }
-    window.scrollTo(0, 0);
+    const isMuralDirect = (window.location.hash && /mural|fotos/i.test(window.location.hash)) || /mural/i.test(window.location.search);
+    if (!isMuralDirect) {
+      window.scrollTo(0, 0);
+    }
 
     /* -------------------------------------------------------------------------
        5. STORYTELLING PIN & WORD HIGHLIGHT (GSAP ScrollTrigger)
@@ -2679,28 +2695,59 @@
     }
 
     function handleMuralUpload(event) {
-      const file = event.target.files[0];
-      if (!file) return;
+      const files = Array.from(event.target.files || []);
+      if (!files.length) return;
 
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const base64Img = e.target.result;
+      let uploadedCount = 0;
+      files.forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const base64Img = e.target.result;
 
-        // Adiciona a foto instantaneamente à fila da Galeria 3D (sem aparecer no grid inicial)
-        if (typeof addImageToGallery3D === 'function') {
-          addImageToGallery3D(base64Img, 'Foto enviada pelos convidados');
-        }
+          // Adiciona a foto instantaneamente à fila da Galeria 3D
+          if (typeof addImageToGallery3D === 'function') {
+            addImageToGallery3D(base64Img, 'Foto enviada pelos convidados');
+          }
 
-        confetti({
-          particleCount: 85,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ['#D4AF37', '#ffffff', '#BE9F73']
-        });
+          // Adiciona a foto diretamente ao grid visual da página para feedback imediato aos convidados
+          const muralGrid = document.getElementById('mural-grid');
+          if (muralGrid) {
+            const newCard = document.createElement('div');
+            newCard.className = "relative group rounded-2xl overflow-hidden aspect-square bg-champagne-200 shadow-md cursor-pointer border-2 border-gold-400/80 transition-all duration-300 hover:scale-[1.02]";
+            newCard.onclick = () => {
+              if (typeof openGallery3D === 'function') openGallery3D(0);
+            };
+            newCard.innerHTML = `
+              <img src="${base64Img}" alt="Foto dos Convidados" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-90 sm:opacity-0 group-hover:opacity-100 transition-opacity p-3 flex flex-col justify-end text-white text-xs">
+                <span class="font-semibold flex items-center gap-1.5 text-gold-300 text-[11px]">
+                  <span>Sua Foto 📸</span>
+                  <i data-lucide="maximize-2" class="w-3 h-3"></i>
+                </span>
+                <span class="text-[9px] text-champagne-200">No Mural ao Vivo!</span>
+              </div>
+            `;
+            muralGrid.prepend(newCard);
+            if (typeof lucide !== 'undefined' && lucide.createIcons) lucide.createIcons();
+          }
 
-        showMuralToast('Foto adicionada com sucesso à Galeria 3D!');
-      };
-      reader.readAsDataURL(file);
+          uploadedCount++;
+          if (uploadedCount === files.length) {
+            confetti({
+              particleCount: 95,
+              spread: 80,
+              origin: { y: 0.6 },
+              colors: ['#D4AF37', '#ffffff', '#BE9F73']
+            });
+
+            const msg = files.length > 1
+              ? `${files.length} fotos adicionadas com sucesso ao Mural ao Vivo!`
+              : 'Foto adicionada com sucesso ao Mural ao Vivo!';
+            showMuralToast(msg);
+          }
+        };
+        reader.readAsDataURL(file);
+      });
       event.target.value = '';
     }
 
@@ -2866,16 +2913,44 @@ END:VCALENDAR`;
 
 /* -------------------------------------------------------------------------
        13. REFRESH & SCROLL RESET ENFORCEMENT
-       Garante que ao recarregar a página (F5), a tela inicie no topo e o ScrollTrigger
-       calcule os gatilhos a partir do ponto zero.
+       Garante que ao recarregar a página (F5), a tela inicie no topo, mas preserva
+       e realiza o scroll suave e direto até o Mural (#mural-section) caso o convidado
+       tenha escaneado o QR Code da mesa.
        ------------------------------------------------------------------------- */
     window.addEventListener('load', () => {
-      window.scrollTo(0, 0);
-      if (window.lenis) {
-        lenis.scrollTo(0, { immediate: true });
-      }
       if (typeof ScrollTrigger !== 'undefined') {
         ScrollTrigger.refresh(true);
+      }
+
+      const isMuralTarget = (window.location.hash && /mural|fotos/i.test(window.location.hash)) || /mural/i.test(window.location.search);
+
+      if (isMuralTarget) {
+        transitionVideoToHero();
+        const muralTarget = document.getElementById('mural-section');
+        if (muralTarget) {
+          setTimeout(() => {
+            if (window.lenis) {
+              lenis.scrollTo(muralTarget, { offset: -25, duration: 1.2 });
+            } else {
+              muralTarget.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Destaque visual suave no botão de envio de fotos
+            const uploadBtn = document.querySelector('label[for="mural-file-input"]');
+            if (uploadBtn) {
+              uploadBtn.classList.add('ring-4', 'ring-gold-400', 'ring-offset-2', 'animate-pulse');
+              setTimeout(() => {
+                uploadBtn.classList.remove('ring-4', 'ring-gold-400', 'ring-offset-2', 'animate-pulse');
+              }, 4000);
+            }
+            showMuralToast('📸 Bem-vindo ao Mural! Selecione suas fotos abaixo para enviar aos noivos.');
+          }, 350);
+        }
+      } else {
+        window.scrollTo(0, 0);
+        if (window.lenis) {
+          lenis.scrollTo(0, { immediate: true });
+        }
       }
     });
 
