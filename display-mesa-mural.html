@@ -103,15 +103,10 @@
 
       <!-- Ações Principais -->
       <div class="flex flex-wrap items-center gap-3">
-        <button onclick="window.print()" class="px-5 py-3 rounded-xl bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 hover:from-gold-400 hover:to-gold-300 text-charcoal font-bold text-xs tracking-widest uppercase transition-all shadow-lg flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95">
+        <button onclick="window.print()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 hover:from-gold-400 hover:to-gold-300 text-charcoal font-bold text-xs tracking-widest uppercase transition-all shadow-lg flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95">
           <i data-lucide="printer" class="w-4 h-4"></i>
           <span>Imprimir Plaquinhas</span>
         </button>
-
-        <a href="https://criseenock.vercel.app/#mural-section" target="_blank" class="px-4 py-3 rounded-xl bg-charcoal hover:bg-black text-champagne-200 hover:text-white border border-gold-500/40 text-xs font-semibold tracking-wider transition-all flex items-center gap-2">
-          <i data-lucide="external-link" class="w-4 h-4 text-gold-400"></i>
-          <span>Abrir Mural na Vercel</span>
-        </a>
       </div>
     </div>
 
@@ -242,8 +237,8 @@
   <main id="view-tent" class="max-w-xl mx-auto hidden">
     <div class="bg-white rounded-2xl p-6 shadow-2xl border border-gold-400/50 text-center">
       
-      <!-- Lado 1 (Frente da Mesa) -->
-      <div class="table-card-frame bg-gradient-to-b from-[#FDFBF7] via-[#FAF7F2] to-[#F7F2E9] rounded-xl p-8 relative overflow-hidden border border-gold-400/50">
+      <!-- Lado 1 (Frente da Mesa - Invertido para que o topo fique no cume da dobra) -->
+      <div class="table-card-frame bg-gradient-to-b from-[#FDFBF7] via-[#FAF7F2] to-[#F7F2E9] rounded-xl p-8 relative overflow-hidden border border-gold-400/50 rotate-180">
         <div class="absolute inset-3 border border-gold-500/40 rounded-lg pointer-events-none"></div>
         <div class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-gold-400/60 bg-white shadow-sm mb-2">
           <span class="font-cinzel text-xs font-semibold text-gold-700">C & E</span>
@@ -258,15 +253,15 @@
         <p class="font-script text-xl text-gold-700">Com amor, Cris & Enock</p>
       </div>
 
-      <!-- Linha de Dobra (Vinco) -->
-      <div class="my-6 border-t-2 border-dashed border-gray-400 relative">
-        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white px-3 text-[10px] uppercase tracking-widest text-gray-500 font-semibold">
-          ✂ Linha de Dobra ao Meio (Vinco para ficar em pé)
+      <!-- Linha de Dobra (Vinco do Cume) -->
+      <div class="my-6 border-t-2 border-dashed border-gold-500/60 relative">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white px-3 text-[10px] uppercase tracking-widest text-gold-700 font-semibold shadow-sm rounded-full border border-gold-300">
+          ✂ Linha de Dobra ao Meio (Cume da Tenda — Dobrar para Trás)
         </span>
       </div>
 
-      <!-- Lado 2 (Verso da Mesa - Invertido ou igual para quem está do outro lado) -->
-      <div class="table-card-frame bg-gradient-to-b from-[#FDFBF7] via-[#FAF7F2] to-[#F7F2E9] rounded-xl p-8 relative overflow-hidden border border-gold-400/50 rotate-180">
+      <!-- Lado 2 (Verso da Mesa - Posição padrão: o topo encontra o topo do Lado 1 na dobra) -->
+      <div class="table-card-frame bg-gradient-to-b from-[#FDFBF7] via-[#FAF7F2] to-[#F7F2E9] rounded-xl p-8 relative overflow-hidden border border-gold-400/50">
         <div class="absolute inset-3 border border-gold-500/40 rounded-lg pointer-events-none"></div>
         <div class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-gold-400/60 bg-white shadow-sm mb-2">
           <span class="font-cinzel text-xs font-semibold text-gold-700">C & E</span>

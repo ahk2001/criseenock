@@ -1223,7 +1223,7 @@
         </p>
       </div>
 
-      <!-- Botões de Ação do Mural: Explorar Galeria 3D, Upload de Fotos e Plaquinha de Mesa QR Code -->
+      <!-- Botões de Ação do Mural: Explorar Galeria 3D e Upload de Fotos -->
       <div class="flex flex-wrap items-center justify-center gap-4 mb-12">
         <button onclick="openGallery3D(0)" class="px-8 py-4 rounded-full bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 hover:from-gold-500 hover:to-gold-400 text-charcoal font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-xl flex items-center gap-3 cursor-pointer hover:scale-105 border border-gold-300/80 active:scale-95 group">
           <i data-lucide="sparkles" class="w-4 h-4 text-charcoal group-hover:rotate-12 transition-transform"></i>
@@ -1235,11 +1235,6 @@
           <span>Subir Fotos da Festa</span>
         </label>
         <input type="file" id="mural-file-input" accept="image/*" multiple class="hidden" onchange="handleMuralUpload(event)">
-
-        <a href="display-mesa-mural.html" target="_blank" rel="noopener noreferrer" class="px-6 py-4 rounded-full bg-white/80 hover:bg-white text-charcoal hover:text-gold-700 font-semibold text-xs tracking-widest uppercase transition-all duration-300 shadow-lg flex items-center gap-2.5 cursor-pointer hover:scale-105 border border-gold-400/50 active:scale-95">
-          <i data-lucide="qr-code" class="w-4 h-4 text-gold-600"></i>
-          <span>Plaquinha para Mesas (QR Code)</span>
-        </a>
       </div>
 
       <!-- Live Mural Grid: Clicar em qualquer foto abre a galeria 3D em tela cheia -->
