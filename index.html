@@ -1628,6 +1628,9 @@
     // Initialize Lucide Icons
     lucide.createIcons();
 
+    // Detecção imediata de acesso direto ao mural via QR Code de mesa (#mural-section)
+    const isMuralDirect = (typeof window !== 'undefined' && window.location && ((window.location.hash && /mural|fotos/i.test(window.location.hash)) || /mural/i.test(window.location.search))) || false;
+
     /* -------------------------------------------------------------------------
        DOM ELEMENTS INITIALIZATION (Declarados primeiro para evitar qualquer ReferenceError)
        ------------------------------------------------------------------------- */
@@ -1925,7 +1928,6 @@
     if (typeof ScrollTrigger !== 'undefined' && ScrollTrigger.clearScrollMemory) {
       ScrollTrigger.clearScrollMemory('manual');
     }
-    const isMuralDirect = (window.location.hash && /mural|fotos/i.test(window.location.hash)) || /mural/i.test(window.location.search);
     if (!isMuralDirect) {
       window.scrollTo(0, 0);
     }
