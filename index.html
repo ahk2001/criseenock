@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <meta name="color-scheme" content="light">
-  <meta name="supported-color-schemes" content="light">
+  <meta name="color-scheme" content="light dark">
+  <meta name="supported-color-schemes" content="light dark">
+  <meta name="theme-color" content="#FAF7F2">
+  <meta name="darkreader-lock">
   <title>Cris & Enock — Nosso Casamento</title>
   <meta name="description" content="Celebre o amor de Cris & Enock no dia 09 de Janeiro de 2027 em Jaraguá do Sul, SC. Convite interativo e confirmação de presença.">
 
@@ -101,12 +103,12 @@
     /* Previne que navegadores mobile com Modo Noturno forçado (Samsung Internet / Chrome Android)
        alterem ou invertam os tons champagne, paleta dourada, cards ou imagens do casamento */
     :root {
-      color-scheme: light only;
-      supported-color-schemes: light;
+      color-scheme: light dark;
+      supported-color-schemes: light dark;
     }
 
     html, body {
-      color-scheme: light only !important;
+      color-scheme: light dark !important;
       forced-color-adjust: none !important;
       -webkit-forced-color-adjust: none !important;
     }
@@ -118,7 +120,7 @@
 
     @media (prefers-color-scheme: dark) {
       :root, html, body {
-        color-scheme: light only !important;
+        color-scheme: light dark !important;
         forced-color-adjust: none !important;
         -webkit-forced-color-adjust: none !important;
       }
