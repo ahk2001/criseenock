@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
   <title>Plaquinha de Mesa & QR Code — Casamento Cris & Enock</title>
   <meta name="description" content="Display de mesa oficial com QR Code para os convidados compartilharem fotos da festa no mural ao vivo de Cris & Enock.">
 
@@ -55,6 +57,22 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
+    :root {
+      color-scheme: light only;
+      supported-color-schemes: light;
+    }
+
+    html, body {
+      color-scheme: light only !important;
+      forced-color-adjust: none !important;
+      -webkit-forced-color-adjust: none !important;
+    }
+
+    *, *::before, *::after {
+      forced-color-adjust: none !important;
+      -webkit-forced-color-adjust: none !important;
+    }
+
     @media print {
       body {
         background: transparent !important;
