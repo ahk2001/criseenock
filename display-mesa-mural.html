@@ -123,9 +123,14 @@
 
       <!-- Ações Principais -->
       <div class="flex flex-wrap items-center gap-3">
-        <button onclick="window.print()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 hover:from-gold-400 hover:to-gold-300 text-charcoal font-bold text-xs tracking-widest uppercase transition-all shadow-lg flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95">
-          <i data-lucide="printer" class="w-4 h-4"></i>
-          <span>Imprimir Plaquinhas</span>
+        <a id="btn-download-card" href="assets/images/plaquinhas/plaquinha-10x15-monograma.png" download="plaquinha-10x15-monograma-cris-e-enock.png" class="px-6 py-3 rounded-xl bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 hover:from-gold-400 hover:to-gold-300 text-charcoal font-bold text-xs tracking-widest uppercase transition-all shadow-lg flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95">
+          <i data-lucide="download" class="w-4 h-4 text-charcoal"></i>
+          <span id="txt-download-card">Baixar Plaquinha 10x15 cm (300 DPI)</span>
+        </a>
+
+        <button onclick="window.print()" class="px-5 py-3 rounded-xl bg-charcoal hover:bg-black text-champagne-200 hover:text-white border border-gold-500/40 text-xs font-semibold tracking-wider transition-all flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95">
+          <i data-lucide="printer" class="w-4 h-4 text-gold-400"></i>
+          <span>Imprimir</span>
         </button>
       </div>
     </div>
@@ -133,37 +138,38 @@
     <!-- Filtros de Formato e Alternador do QR Code -->
     <div class="mt-6 pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs">
       <div class="flex items-center gap-2">
-        <span class="text-champagne-300">Modelo de Plaquinha:</span>
-        <button id="btn-mode-portrait" onclick="switchMode('portrait')" class="px-3 py-1.5 rounded-lg bg-gold-500 text-charcoal font-semibold border border-gold-400 transition-all">
+        <span class="text-champagne-300">Modelo:</span>
+        <button id="btn-mode-portrait" onclick="switchMode('portrait')" class="px-3 py-1.5 rounded-lg bg-gold-500 text-charcoal font-semibold border border-gold-400 transition-all cursor-pointer">
           Porta-Retrato 10x15 cm
         </button>
-        <button id="btn-mode-tent" onclick="switchMode('tent')" class="px-3 py-1.5 rounded-lg bg-white/10 text-champagne-200 hover:bg-white/20 border border-white/10 transition-all">
-          Tenda / Dobrável (Fica em pé)
+        <button id="btn-mode-tent" onclick="switchMode('tent')" class="px-3 py-1.5 rounded-lg bg-white/10 text-champagne-200 hover:bg-white/20 border border-white/10 transition-all cursor-pointer">
+          Tenda Dobrável (Fica em pé)
         </button>
-        <button id="btn-mode-sheet" onclick="switchMode('sheet')" class="px-3 py-1.5 rounded-lg bg-white/10 text-champagne-200 hover:bg-white/20 border border-white/10 transition-all">
-          Folha A4 (2 por página)
+        <button id="btn-mode-sheet" onclick="switchMode('sheet')" class="px-3 py-1.5 rounded-lg bg-white/10 text-champagne-200 hover:bg-white/20 border border-white/10 transition-all cursor-pointer">
+          Folha A4 (2 por folha)
         </button>
       </div>
 
       <div class="flex items-center gap-2">
-        <span class="text-champagne-300">Estilo do QR:</span>
-        <button id="btn-qr-mono" onclick="toggleQRStyle('mono')" class="px-3 py-1.5 rounded-lg bg-gold-500 text-charcoal font-semibold border border-gold-400 transition-all">
+        <span class="text-champagne-300">Estilo:</span>
+        <button id="btn-qr-mono" onclick="toggleQRStyle('mono')" class="px-3 py-1.5 rounded-lg bg-gold-500 text-charcoal font-semibold border border-gold-400 transition-all cursor-pointer">
           Com Monograma C & E
         </button>
-        <button id="btn-qr-std" onclick="toggleQRStyle('std')" class="px-3 py-1.5 rounded-lg bg-white/10 text-champagne-200 hover:bg-white/20 border border-white/10 transition-all">
-          Clássico / Minimalista
+        <button id="btn-qr-std" onclick="toggleQRStyle('std')" class="px-3 py-1.5 rounded-lg bg-white/10 text-champagne-200 hover:bg-white/20 border border-white/10 transition-all cursor-pointer">
+          Clássico Minimalista
         </button>
       </div>
 
-      <div class="flex items-center gap-2">
-        <a href="assets/images/qrcode-mural.png" download="qrcode-mural-cris-e-enock.png" class="text-gold-400 hover:underline flex items-center gap-1">
-          <i data-lucide="download" class="w-3.5 h-3.5"></i>
-          <span>Baixar PNG (300 DPI)</span>
+      <div class="flex items-center gap-2 text-[11px] text-champagne-300">
+        <span class="text-warmgray">Apenas QR Code avulso:</span>
+        <a id="btn-download-raw-png" href="assets/images/qrcode-mural-monograma.png" download="qrcode-mural-cris-e-enock.png" class="text-gold-400 hover:underline flex items-center gap-1 font-semibold">
+          <i data-lucide="download" class="w-3 h-3"></i>
+          <span>PNG</span>
         </a>
         <span class="text-white/20">•</span>
-        <a href="assets/images/qrcode-mural.svg" download="qrcode-mural-cris-e-enock.svg" class="text-gold-400 hover:underline flex items-center gap-1">
-          <i data-lucide="download" class="w-3.5 h-3.5"></i>
-          <span>Baixar SVG (Vetor)</span>
+        <a href="assets/images/qrcode-mural.svg" download="qrcode-mural-cris-e-enock.svg" class="text-gold-400 hover:underline flex items-center gap-1 font-semibold">
+          <i data-lucide="download" class="w-3 h-3"></i>
+          <span>SVG</span>
         </a>
       </div>
     </div>
@@ -364,30 +370,86 @@
   <script>
     lucide.createIcons();
 
+    let currentMode = 'portrait';
+    let currentStyle = 'mono';
     let currentQR = 'assets/images/qrcode-mural-monograma.png';
 
+    const cardFiles = {
+      'portrait-mono': {
+        href: 'assets/images/plaquinhas/plaquinha-10x15-monograma.png',
+        download: 'plaquinha-10x15-monograma-cris-e-enock.png',
+        label: 'Baixar Plaquinha 10x15 cm (300 DPI)'
+      },
+      'portrait-std': {
+        href: 'assets/images/plaquinhas/plaquinha-10x15-classica.png',
+        download: 'plaquinha-10x15-classica-cris-e-enock.png',
+        label: 'Baixar Plaquinha 10x15 cm (300 DPI)'
+      },
+      'tent-mono': {
+        href: 'assets/images/plaquinhas/plaquinha-tenda-monograma.png',
+        download: 'plaquinha-tenda-dobravel-monograma-cris-e-enock.png',
+        label: 'Baixar Tenda Dobrável (300 DPI)'
+      },
+      'tent-std': {
+        href: 'assets/images/plaquinhas/plaquinha-tenda-classica.png',
+        download: 'plaquinha-tenda-dobravel-classica-cris-e-enock.png',
+        label: 'Baixar Tenda Dobrável (300 DPI)'
+      },
+      'sheet-mono': {
+        href: 'assets/images/plaquinhas/plaquinha-folha-a4-monograma.png',
+        download: 'plaquinha-folha-a4-monograma-cris-e-enock.png',
+        label: 'Baixar Folha A4 Completa (300 DPI)'
+      },
+      'sheet-std': {
+        href: 'assets/images/plaquinhas/plaquinha-folha-a4-classica.png',
+        download: 'plaquinha-folha-a4-classica-cris-e-enock.png',
+        label: 'Baixar Folha A4 Completa (300 DPI)'
+      }
+    };
+
+    function updateDownloadButton() {
+      const key = `${currentMode}-${currentStyle}`;
+      const item = cardFiles[key] || cardFiles['portrait-mono'];
+      const btn = document.getElementById('btn-download-card');
+      const txt = document.getElementById('txt-download-card');
+      if (btn) {
+        btn.href = item.href;
+        btn.download = item.download;
+      }
+      if (txt) {
+        txt.textContent = item.label;
+      }
+      const rawBtn = document.getElementById('btn-download-raw-png');
+      if (rawBtn) {
+        rawBtn.href = currentStyle === 'mono' ? 'assets/images/qrcode-mural-monograma.png' : 'assets/images/qrcode-mural.png';
+      }
+    }
+
     function switchMode(mode) {
+      currentMode = mode;
       document.getElementById('view-portrait').classList.add('hidden');
       document.getElementById('view-tent').classList.add('hidden');
       document.getElementById('view-sheet').classList.add('hidden');
 
-      document.getElementById('btn-mode-portrait').className = "px-3 py-1.5 rounded-lg bg-white/10 text-champagne-200 hover:bg-white/20 border border-white/10 transition-all";
-      document.getElementById('btn-mode-tent').className = "px-3 py-1.5 rounded-lg bg-white/10 text-champagne-200 hover:bg-white/20 border border-white/10 transition-all";
-      document.getElementById('btn-mode-sheet').className = "px-3 py-1.5 rounded-lg bg-white/10 text-champagne-200 hover:bg-white/20 border border-white/10 transition-all";
+      document.getElementById('btn-mode-portrait').className = "px-3 py-1.5 rounded-lg bg-white/10 text-champagne-200 hover:bg-white/20 border border-white/10 transition-all cursor-pointer";
+      document.getElementById('btn-mode-tent').className = "px-3 py-1.5 rounded-lg bg-white/10 text-champagne-200 hover:bg-white/20 border border-white/10 transition-all cursor-pointer";
+      document.getElementById('btn-mode-sheet').className = "px-3 py-1.5 rounded-lg bg-white/10 text-champagne-200 hover:bg-white/20 border border-white/10 transition-all cursor-pointer";
 
       if (mode === 'portrait') {
         document.getElementById('view-portrait').classList.remove('hidden');
-        document.getElementById('btn-mode-portrait').className = "px-3 py-1.5 rounded-lg bg-gold-500 text-charcoal font-semibold border border-gold-400 transition-all";
+        document.getElementById('btn-mode-portrait').className = "px-3 py-1.5 rounded-lg bg-gold-500 text-charcoal font-semibold border border-gold-400 transition-all cursor-pointer";
       } else if (mode === 'tent') {
         document.getElementById('view-tent').classList.remove('hidden');
-        document.getElementById('btn-mode-tent').className = "px-3 py-1.5 rounded-lg bg-gold-500 text-charcoal font-semibold border border-gold-400 transition-all";
+        document.getElementById('btn-mode-tent').className = "px-3 py-1.5 rounded-lg bg-gold-500 text-charcoal font-semibold border border-gold-400 transition-all cursor-pointer";
       } else if (mode === 'sheet') {
         document.getElementById('view-sheet').classList.remove('hidden');
-        document.getElementById('btn-mode-sheet').className = "px-3 py-1.5 rounded-lg bg-gold-500 text-charcoal font-semibold border border-gold-400 transition-all";
+        document.getElementById('btn-mode-sheet').className = "px-3 py-1.5 rounded-lg bg-gold-500 text-charcoal font-semibold border border-gold-400 transition-all cursor-pointer";
       }
+      updateDownloadButton();
     }
 
     function toggleQRStyle(style) {
+      currentStyle = style;
       const isMono = style === 'mono';
       currentQR = isMono ? 'assets/images/qrcode-mural-monograma.png' : 'assets/images/qrcode-mural.png';
 
@@ -399,13 +461,16 @@
       });
 
       if (isMono) {
-        document.getElementById('btn-qr-mono').className = "px-3 py-1.5 rounded-lg bg-gold-500 text-charcoal font-semibold border border-gold-400 transition-all";
-        document.getElementById('btn-qr-std').className = "px-3 py-1.5 rounded-lg bg-white/10 text-champagne-200 hover:bg-white/20 border border-white/10 transition-all";
+        document.getElementById('btn-qr-mono').className = "px-3 py-1.5 rounded-lg bg-gold-500 text-charcoal font-semibold border border-gold-400 transition-all cursor-pointer";
+        document.getElementById('btn-qr-std').className = "px-3 py-1.5 rounded-lg bg-white/10 text-champagne-200 hover:bg-white/20 border border-white/10 transition-all cursor-pointer";
       } else {
-        document.getElementById('btn-qr-std').className = "px-3 py-1.5 rounded-lg bg-gold-500 text-charcoal font-semibold border border-gold-400 transition-all";
-        document.getElementById('btn-qr-mono').className = "px-3 py-1.5 rounded-lg bg-white/10 text-champagne-200 hover:bg-white/20 border border-white/10 transition-all";
+        document.getElementById('btn-qr-std').className = "px-3 py-1.5 rounded-lg bg-gold-500 text-charcoal font-semibold border border-gold-400 transition-all cursor-pointer";
+        document.getElementById('btn-qr-mono').className = "px-3 py-1.5 rounded-lg bg-white/10 text-champagne-200 hover:bg-white/20 border border-white/10 transition-all cursor-pointer";
       }
+      updateDownloadButton();
     }
+
+    updateDownloadButton();
   </script>
 </body>
 </html>
